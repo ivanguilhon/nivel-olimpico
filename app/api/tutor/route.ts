@@ -1,49 +1,49 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { NextRequest } from 'next/server'
 
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
-
-const SYSTEM_PROMPT = `Você é o Tutor Olímpico, assistente de física do Prof. Dr. Ivan Guilhon da plataforma Nível Olímpico (nivelolimpico.com.br).
+const SYSTEM_PROMPT = `Você é o Tutor Olímpico, assistente de física do Prof. Dr. Ivan Guilhon da plataforma Física em Nível Olímpico (nivelolimpico.com.br).
 
 Seu perfil:
 - Especialista em física para olimpíadas (OBF, IPhO, EuPhO, OIbF) e exames ITA/IME
-- Didático, rigoroso e encorajador — você acredita que qualquer aluno dedicado pode alcançar o nível olímpico
+- Didático, rigoroso e encorajador
 - Responde sempre em português brasileiro
 
-Suas diretrizes:
-
-1. **Resolução de problemas**: sempre mostre o raciocínio passo a passo. Nunca pule etapas. Identifique explicitamente: grandezas dadas, grandezas buscadas, leis aplicáveis.
-
-2. **Matemática**: use notação LaTeX sempre. Equações inline com $...$ e equações em destaque com $$...$$.
-   Exemplo: A energia cinética é $E_k = \\frac{1}{2}mv^2$ e a energia potencial gravitacional é:
-   $$E_p = mgh$$
-
-3. **Múltiplos métodos**: quando possível, apresente mais de uma abordagem (ex: Newton + Lagrange, energia + forças).
-
-4. **Nível calibrado**: ajuste a profundidade ao nível demonstrado pelo aluno. Para ITA/IME, vá além do básico.
-
-5. **Conceitos físicos**: sempre conecte a matemática à intuição física. Explique por que o resultado faz sentido.
-
-6. **Erros comuns**: quando identificar um erro conceitual, corrija com gentileza e explique a origem do equívoco.
-
-7. **Tópicos cobertos**: mecânica clássica, termodinâmica, eletromagnetismo, óptica, física moderna, ondulatória, fluidos, gravitação.
-
-Quando não souber algo ou o tópico estiver fora do escopo de física, diga claramente e redirecione o aluno.`
+Diretrizes:
+1. Mostre resolução passo a passo. Identifique: dados, incógnitas, leis aplicáveis.
+2. Use LaTeX sempre: inline com $...$ e destaque com $$...$$.
+3. Quando possível, apresente múltiplos métodos de solução.
+4. Ajuste profundidade ao nível demonstrado pelo aluno.
+5. Conecte matemática à intuição física.
+6. Tópicos: mecânica, termodinâmica, eletromagnetismo, óptica, física moderna, ondulatória, fluidos, gravitação.`
 
 export async function POST(req: NextRequest) {
-  try {
-    const { messages } = await req.json()
+  // Check API key first
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return new Response(
+      JSON.stringify({ error: 'ANTHROPIC_API_KEY não configurada. Adicione a variável de ambiente no Vercel.' }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
+    )
+  }
 
-    if (!messages || !Array.isArray(messages)) {
-      return new Response('Mensagens inválidas', { status: 400 })
+  try {
+    const body = await req.json()
+    const { messages } = body
+
+    if (!messages || !Array.isArray(messages) || messages.length === 0) {
+      return new Response(JSON.stringify({ error: 'Mensagens inválidas.' }), { status: 400 })
     }
 
-    // Validate message format
     const validMessages = messages
       .filter((m: { role: string; content: string }) =>
-        (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string'
+        (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string' && m.content.trim()
       )
-      .slice(-20) // limit history to last 20 messages
+      .slice(-20)
+
+    if (validMessages.length === 0) {
+      return new Response(JSON.stringify({ error: 'Nenhuma mensagem válida.' }), { status: 400 })
+    }
+
+    const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
     const stream = await client.messages.create({
       model: 'claude-sonnet-4-6',
@@ -54,16 +54,19 @@ export async function POST(req: NextRequest) {
     })
 
     const encoder = new TextEncoder()
-
     const readable = new ReadableStream({
       async start(controller) {
-        for await (const event of stream) {
-          if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {
-            controller.enqueue(encoder.encode(event.delta.text))
+        try {
+          for await (const event of stream) {
+            if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {
+              controller.enqueue(encoder.encode(event.delta.text))
+            }
+            if (event.type === 'message_stop') {
+              controller.close()
+            }
           }
-          if (event.type === 'message_stop') {
-            controller.close()
-          }
+        } catch (err) {
+          controller.error(err)
         }
       },
     })
@@ -71,11 +74,16 @@ export async function POST(req: NextRequest) {
     return new Response(readable, {
       headers: {
         'Content-Type': 'text/plain; charset=utf-8',
+        'Cache-Control': 'no-cache',
         'X-Content-Type-Options': 'nosniff',
       },
     })
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Tutor API error:', error)
-    return new Response('Erro ao conectar com o tutor. Tente novamente.', { status: 500 })
+    const msg = error instanceof Error ? error.message : 'Erro desconhecido'
+    return new Response(
+      JSON.stringify({ error: `Erro ao conectar com a API: ${msg}` }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
+    )
   }
 }

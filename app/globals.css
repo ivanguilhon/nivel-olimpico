@@ -1,22 +1,25 @@
 @import "tailwindcss";
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap');
 
+/* ─── Brand tokens (Manual da Marca) ─── */
 @theme {
-  --color-bg:       #0D0D1A;
-  --color-surface:  #141428;
-  --color-surface2: #1C1C38;
-  --color-border:   #252545;
-  --color-gold:     #C9A227;
-  --color-gold-lt:  #E8C547;
-  --color-text:     #F0EDE8;
-  --color-muted:    #8A8A9A;
+  --color-bg:       #000000;
+  --color-surface:  #111111;
+  --color-surface2: #1a1a1a;
+  --color-border:   #2a2a2a;
+  --color-gold:     #E4AD41;
+  --color-gold-lt:  #F0C05A;
+  --color-gray:     #3E3E3D;
+  --color-text:     #FFFFFF;
+  --color-muted:    #999999;
 
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body:    'Inter', system-ui, sans-serif;
+  --font-display: 'Outfit', system-ui, sans-serif;
+  --font-body:    'Lato', system-ui, sans-serif;
 }
 
-* { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
   background-color: var(--color-bg);
@@ -25,15 +28,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
+  letter-spacing: -0.01em;
 }
 
-/* Gold underline for section headings */
 .section-title {
   display: inline-block;
   position: relative;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.6rem;
 }
 .section-title::after {
   content: '';
@@ -43,9 +46,5 @@ h1, h2, h3, h4 {
   background: var(--color-gold);
 }
 
-/* Smooth scrolling */
-html { scroll-behavior: smooth; }
-
-/* Hover utilities for server components */
-.hover-gold:hover { color: var(--color-gold) !important; }
-.hover-gold       { color: var(--color-muted); transition: color 0.15s; }
+.hover-gold        { color: var(--color-muted); transition: color 0.15s; }
+.hover-gold:hover  { color: var(--color-gold) !important; }
