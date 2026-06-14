@@ -19,6 +19,7 @@ const navLinks = [
   { label: 'Grupos',         href: '/grupos' },
   { label: 'Links Úteis',    href: '/links' },
   { label: 'Contato',        href: '/contato' },
+  { label: 'Tutor IA',       href: '/tutor' },
 ]
 
 export default function Navbar() {
