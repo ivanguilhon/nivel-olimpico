@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { IMG } from '@/components/SalesComponents'
 import Image from 'next/image'
 
 export const metadata: Metadata = {
@@ -109,9 +110,8 @@ export default function BlogPage() {
               <p style={{ color: 'var(--color-muted)', fontSize: 14, lineHeight: 1.7, flex: 1 }}>{post.excerpt}</p>
               <div className="flex items-center justify-between mt-4">
                 <div className="flex items-center gap-2">
-                  <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(228,173,65,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>
-                    IG
-                  </div>
+                  <img src={IMG.perfil} alt={post.author}
+                    style={{ width: 24, height: 24, borderRadius: '50%', objectFit: 'cover' }} />
                   <span style={{ color: 'var(--color-muted)', fontSize: 12, fontFamily: 'var(--font-display)' }}>{post.author}</span>
                 </div>
                 <Link href={`/blog/${post.slug}`} style={{ color: 'var(--color-gold)', fontSize: 13, fontFamily: 'var(--font-display)', fontWeight: 600 }}>

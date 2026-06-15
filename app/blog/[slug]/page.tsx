@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import { IMG } from '@/components/SalesComponents'
 import { posts } from '../page'
 
 const fullContent: Record<string, string> = {
@@ -146,11 +147,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
         {/* Meta */}
         <div className="flex items-center gap-4 mb-6">
-          <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(228,173,65,0.15)',
-            border: '1px solid rgba(228,173,65,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 700, color: 'var(--color-gold)', flexShrink: 0 }}>
-            IG
-          </div>
+          <img src={IMG.perfil} alt="Ivan Guilhon"
+            style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', flexShrink: 0,
+              border: '1px solid rgba(228,173,65,0.4)' }} />
           <div>
             <p style={{ fontFamily: 'var(--font-display)', fontWeight: 600, color: 'var(--color-text)', fontSize: 14 }}>{post.author}</p>
             <div className="flex items-center gap-2">
@@ -174,15 +173,13 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         {/* Author card */}
         <div className="mt-12 flex items-start gap-4 p-6 rounded-xl"
           style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-          <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'rgba(228,173,65,0.15)',
-            border: '2px solid rgba(228,173,65,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: 'var(--color-gold)', flexShrink: 0 }}>
-            IG
-          </div>
+          <img src={IMG.perfil} alt="Prof. Dr. Ivan Guilhon"
+            style={{ width: 56, height: 56, borderRadius: '50%', objectFit: 'cover', flexShrink: 0,
+              border: '2px solid var(--color-gold)' }} />
           <div>
             <p style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: 'var(--color-text)', marginBottom: 4 }}>Prof. Dr. Ivan Guilhon</p>
             <p style={{ color: 'var(--color-muted)', fontSize: 14, lineHeight: 1.6 }}>
-              Doutor em Física, coordenador do IYPT Brasil, autor de quatro livros e criador da plataforma Física em Nível Olímpico.
+              Engenheiro Eletrônico e Doutor em Física pelo ITA. Medalha de Prata na IPhO, Ouro na OBF. Coordenador do IYPT Brasil, autor de 4 livros e professor no Departamento de Física do ITA.
             </p>
           </div>
         </div>

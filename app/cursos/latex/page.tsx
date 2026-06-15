@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Check, ArrowRight } from 'lucide-react'
-import { CtaButton, GuaranteeBadge, Testimonial, Module, FaqItem, Instructor } from '@/components/SalesComponents'
+import { CtaButton, GuaranteeBadge, Testimonial, Module, FaqItem, Instructor, IMG } from '@/components/SalesComponents'
 
 export const metadata: Metadata = {
   title: 'LaTeX para Todos — Domine a escrita acadêmica e profissional',
@@ -61,6 +61,11 @@ export default function LatexPage() {
           <p style={{ color: 'var(--color-muted)', fontSize: 13, marginTop: 16 }}>
             ✓ Sem instalação &nbsp;·&nbsp; ✓ 8 módulos &nbsp;·&nbsp; ✓ Garantia de 7 dias
           </p>
+          <div className="mt-10 flex justify-center lg:justify-start">
+            <img src={IMG.latex} alt="LaTeX para Todos — exemplo de documento"
+              style={{ maxWidth: 420, width: '100%', borderRadius: 12, border: '1px solid var(--color-border)',
+                boxShadow: '0 20px 60px rgba(0,0,0,0.5)' }} />
+          </div>
         </div>
       </section>
 

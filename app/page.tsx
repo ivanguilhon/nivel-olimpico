@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight, Check } from 'lucide-react'
-import { CtaButton } from '@/components/SalesComponents'
+import { CtaButton, IMG } from '@/components/SalesComponents'
 
 const features = [
   { icon: '🏆', title: 'Cursos olímpicos',        desc: 'LaTeX, Física Experimental e Física Olímpica. Do zero ao nível internacional.' },
@@ -169,20 +169,25 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {[
-            { subtitle: 'Volumes 1, 2 e 3', title: 'Física em Nível Olímpico', desc: 'Vasta coletânea de problemas para OBF, OIbF, EuPhO e IPhO — com dicas e soluções detalhadas.', links: [{l:'Livros Físicos', h:'https://vestseller.com.br/catalogsearch/result/?q=ivan+guilhon'},{l:'Ebooks',h:'/livros'}] },
-            { subtitle: 'Inteligência, Virtudes e Provas', title: 'Estudo Eficaz', desc: 'Como desenvolver inteligência, cultivar virtudes e ter alto desempenho em provas e exames.', links: [{l:'Ebook',h:'https://pay.hotmart.com/X72216388W'},{l:'Livro Físico',h:'https://vestseller.com.br/estudo%20eficaz'}] },
+            { img: IMG.fno, subtitle: 'Volumes 1, 2 e 3', title: 'Física em Nível Olímpico', desc: 'Vasta coletânea de problemas para OBF, OIbF, EuPhO e IPhO — com dicas e soluções detalhadas.', links: [{l:'Livros Físicos', h:'https://vestseller.com.br/catalogsearch/result/?q=ivan+guilhon'},{l:'Ebooks',h:'/livros'}] },
+            { img: IMG.estudoEficaz, subtitle: 'Inteligência, Virtudes e Provas', title: 'Estudo Eficaz', desc: 'Como desenvolver inteligência, cultivar virtudes e ter alto desempenho em provas e exames.', links: [{l:'Ebook',h:'https://pay.hotmart.com/X72216388W'},{l:'Livro Físico',h:'https://vestseller.com.br/estudo%20eficaz'}] },
           ].map(book => (
-            <div key={book.title} className="p-8 rounded-2xl" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-              <p style={{ color: 'var(--color-gold)', fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '0.5rem', fontFamily: 'var(--font-display)' }}>{book.subtitle}</p>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 700, color: 'var(--color-text)', marginBottom: '0.75rem' }}>{book.title}</h3>
-              <p style={{ color: 'var(--color-muted)', fontSize: 15, lineHeight: 1.7, marginBottom: '1.5rem' }}>{book.desc}</p>
-              <div className="flex flex-wrap gap-3">
-                {book.links.map(lk => (
-                  <a key={lk.l} href={lk.h} target={lk.h.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"
-                    style={{ padding: '9px 18px', borderRadius: 6, fontSize: 13, fontWeight: 600, border: '1px solid var(--color-gold)', color: 'var(--color-gold)', textDecoration: 'none', fontFamily: 'var(--font-display)' }}>
-                    {lk.l}
-                  </a>
-                ))}
+            <div key={book.title} className="rounded-2xl overflow-hidden flex flex-col sm:flex-row" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
+              <div style={{ width: 160, flexShrink: 0, background: 'var(--color-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
+                <img src={book.img} alt={book.title} style={{ maxWidth: '100%', maxHeight: 180, objectFit: 'contain' }} />
+              </div>
+              <div className="p-6 flex flex-col flex-1">
+                <p style={{ color: 'var(--color-gold)', fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '0.5rem', fontFamily: 'var(--font-display)' }}>{book.subtitle}</p>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 700, color: 'var(--color-text)', marginBottom: '0.75rem' }}>{book.title}</h3>
+                <p style={{ color: 'var(--color-muted)', fontSize: 14, lineHeight: 1.7, marginBottom: '1.5rem', flex: 1 }}>{book.desc}</p>
+                <div className="flex flex-wrap gap-3">
+                  {book.links.map(lk => (
+                    <a key={lk.l} href={lk.h} target={lk.h.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"
+                      style={{ padding: '8px 16px', borderRadius: 6, fontSize: 13, fontWeight: 600, border: '1px solid var(--color-gold)', color: 'var(--color-gold)', textDecoration: 'none', fontFamily: 'var(--font-display)' }}>
+                      {lk.l}
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
           ))}

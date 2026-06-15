@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Check, ArrowRight } from 'lucide-react'
-import { CtaButton, GuaranteeBadge, Testimonial, Module, FaqItem, Instructor } from '@/components/SalesComponents'
+import { CtaButton, GuaranteeBadge, Testimonial, Module, FaqItem, Instructor, IMG } from '@/components/SalesComponents'
 
 export const metadata: Metadata = {
   title: 'Física Experimental — Domine a prova experimental das olimpíadas',
@@ -57,6 +57,11 @@ export default function FisicaExperimentalPage() {
           <p style={{ color: 'var(--color-muted)', fontSize: 13, marginTop: 16 }}>
             ✓ 5 módulos práticos &nbsp;·&nbsp; ✓ Sem laboratório &nbsp;·&nbsp; ✓ Garantia de 7 dias
           </p>
+          <div className="mt-10 flex justify-center">
+            <img src={IMG.cife} alt="Física Experimental — gráfico com ajuste linear"
+              style={{ maxWidth: 440, width: '100%', borderRadius: 12, border: '1px solid var(--color-border)',
+                boxShadow: '0 20px 60px rgba(0,0,0,0.5)' }} />
+          </div>
         </div>
       </section>
 
