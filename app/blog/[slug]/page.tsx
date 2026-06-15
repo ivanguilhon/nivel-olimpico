@@ -1,169 +1,122 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import { posts } from '../page'
 
-const posts: Record<string, {
-  title: string; date: string; category: string; readTime: string; content: string
-}> = {
-  'conservacao-energia-mecanica': {
-    title: 'Conservação de Energia Mecânica: da teoria à prova do ITA',
-    date: '2025-05-15',
-    category: 'Mecânica',
-    readTime: '8 min',
-    content: `
-A conservação de energia é uma das ferramentas mais poderosas da física olímpica. Enquanto a segunda lei de Newton exige que você rastreie todas as forças em cada instante, a conservação de energia permite ir diretamente do estado inicial ao final — sem se preocupar com o caminho.
+const fullContent: Record<string, string> = {
+  'olimpiada-brasileira-de-ciencias-obc-2026': `
+A Olimpíada Brasileira de Ciências (OBC) é uma das principais competições científicas do país voltadas a jovens estudantes, reunindo conteúdos de Física, Química e Biologia em um formato integrado. Trata-se de uma excelente porta de entrada para olimpíadas internacionais, especialmente para a International Junior Science Olympiad (IJSO).
 
-## O princípio
+## Inscrição e público-alvo
 
-Para um sistema conservativo, a energia mecânica total E = K + U é constante:
+Um ponto fundamental é que a inscrição na OBC **não é individual**. Ela deve ser realizada pela escola, que se torna responsável por: inscrever seus alunos, aplicar a prova da primeira fase e corrigir e enviar as notas à organização.
 
-$$E = \\frac{1}{2}mv^2 + U(\\vec{r}) = \\text{const}$$
+Se você deseja participar da olimpíada, o primeiro passo é convencer a sua escola a se inscrever na competição. Podem participar da OBC 2026 **exclusivamente os alunos nascidos a partir de 1.º de janeiro de 2011**.
 
-Isso funciona sempre que as únicas forças que realizam trabalho são conservativas (gravitação, mola elástica, força elétrica).
+## Calendário preliminar 2026
 
-## Quando usar energia vs. Newton
+- **Inscrição online:** até 30 de abril
+- **Primeira fase:** 8 (sexta) ou 9 (sábado) de maio
+- **Cadastro das notas (1ª fase):** 21 de maio
+- **Divulgação dos classificados:** 31 de maio
+- **Segunda fase:** 27 de junho
 
-**Use Newton quando:** você precisa da força ou aceleração em um instante específico.
+## Formato da prova
 
-**Use energia quando:** você precisa relacionar velocidades em dois pontos distintos, ou encontrar velocidade máxima/mínima.
+A OBC integra três disciplinas em um formato diferenciado: as questões exigem justificativas formais, aproximando-se mais da prática científica do que muitas competições tradicionais.
 
-**Exemplo clássico — ITA 2019:**
+A OBC ocupa um espaço estratégico no ecossistema das olimpíadas científicas brasileiras. Para alunos, é o início de um percurso que pode levá-los a representar o Brasil em nível internacional. Para detalhes completos, consulte o regulamento oficial da competição.
+`,
 
-Uma esfera de massa $m$ está presa a um fio inextensível de comprimento $L$ e parte do repouso com o fio horizontal. Qual a tensão no fio no ponto mais baixo?
+  'brasil-conquista-medalha-de-prata-iypt-2025': `
+A equipe brasileira conquistou a medalha de prata na 38ª edição do *International Young Physicists' Tournament* (IYPT), realizada entre os dias 29 de junho e 6 de julho de 2025, em Lund, na Suécia. Conhecido como a "Copa do Mundo de Física", o torneio internacional reúne anualmente estudantes do ensino médio de diversos países para discutir e defender, em inglês, soluções de problemas abertos de física teórica e experimental.
 
-*Solução por energia:*
+Com essa conquista, o Brasil reafirma seu lugar entre as equipes de destaque da competição, seguindo uma sequência de resultados expressivos e consolidando sua presença como um competidor forte no cenário internacional.
 
-$$\\frac{1}{2}mv^2 = mgL \\implies v^2 = 2gL$$
+## A equipe
 
-No ponto mais baixo, a equação de movimento circular:
+A equipe foi composta pelos estudantes Alice Jordão Motta A Carvalho, Davi Dochi Scarabelli, Fernando Giron Paranhos de Ávila, Gabriel Bassi de Barros Moreira e Mateus Moreira Bastos. A liderança ficou a cargo de Fabrício Marques do Carmo e Igor M. de A. Lysakovski Bampi.
 
-$$T - mg = \\frac{mv^2}{L} = \\frac{m \\cdot 2gL}{L} = 2mg$$
+## O IYPT Brasil
 
-$$\\boxed{T = 3mg}$$
+O IYPT Brasil é coordenado pelo Prof. Dr. Ivan Guilhon e conta com o apoio da Sociedade Brasileira de Física, da Fundação Behring, da Fundação Estudar e da B8 Projetos. A medalha de prata reflete o comprometimento e a colaboração de sociedades científicas, institutos, escolas e estudantes.
 
-## Extensão: sistemas com múltiplos corpos
+Trata-se de uma competição extremamente desafiadora, que exige não apenas domínio do conteúdo de física, mas também habilidades de comunicação, argumentação e trabalho em equipe — todas desenvolvidas ao longo de meses de preparação intensa.
 
-Para um sistema de partículas, a energia total é a soma das energias individuais mais a energia potencial de interação. Em colisões elásticas, a energia cinética total é conservada — e junto com a conservação do momento, você obtém um sistema de duas equações para duas incógnitas.
+## Próxima edição
 
-## Dica olímpica
+O site oficial do torneio nacional é [www.iyptbrasil.com](http://www.iyptbrasil.com), onde serão abertas as inscrições para a edição de 2026. Os problemas da próxima edição internacional já estão disponíveis em [iypt.org](https://www.iypt.org/problems/iypt-2026-problems/).
+`,
 
-Em problemas com superfícies curvas ou trilhos complexos, a conservação de energia reduz o problema a álgebra simples. Identifique os pontos de interesse, escreva $K_1 + U_1 = K_2 + U_2$, e resolva.
-    `,
-  },
-  'erros-classicos-ita': {
-    title: 'Os 5 erros que mais derrubam candidatos no ITA',
-    date: '2025-04-20',
-    category: 'ITA/IME',
-    readTime: '6 min',
-    content: `
-Depois de anos acompanhando candidatos ao ITA, identifico padrões claros de erros. Não são falhas de conhecimento — são armadilhas conceituais que derrubam até quem estudou muito.
+  'comunidade-fisica-em-nivel-olimpico': `
+Muitos estudantes que se dedicam à preparação para olimpíadas de física enfrentam o desafio de estudar sozinhos. A ausência de colegas com interesses semelhantes, a dificuldade em esclarecer dúvidas complexas e a falta de troca de experiências tornam a jornada mais solitária e, muitas vezes, desmotivadora.
 
-## 1. Confundir referencial inercial e não-inercial
+Pensando em transformar essa realidade, criamos a **Comunidade "Física em Nível Olímpico"** no WhatsApp. Este é um espaço colaborativo onde estudantes podem se apoiar mutuamente, compartilhar dúvidas, trocar experiências e crescer academicamente.
 
-O ITA adora colocar observadores em elevadores, carros e trens. Muitos candidatos aplicam $F = ma$ em referenciais acelerados sem adicionar a força fictícia $F_{fict} = -m\\vec{a}_{ref}$.
+## Grupos disponíveis
 
-**Regra:** se o referencial acelera com $\\vec{a}_0$, adicione $-m\\vec{a}_0$ a todas as equações no referencial não-inercial.
+A comunidade é organizada em grupos segmentados por nível escolar, garantindo que cada participante encontre colegas com desafios e objetivos semelhantes:
 
-## 2. Esquecer a reação normal em superfícies côncavas e convexas
+- **OBF Jr** – Para estudantes do 6º e 7º anos do Ensino Fundamental
+- **OBF Nível 1** – Para alunos do 8º e 9º anos do Ensino Fundamental
+- **OBF Nível 2** – Para estudantes do 1º e 2º anos do Ensino Médio
+- **OBF Nível 3** – Para alunos do 3º ano do Ensino Médio
+- **IYPT** – Focado na preparação para o Torneio Internacional de Jovens Físicos
 
-Em pistas curvas, a normal não é simplesmente $mg\\cos\\theta$. Ela precisa fornecer a componente centrípeta. No topo de uma pista convexa:
+## Como participar
 
-$$mg - N = \\frac{mv^2}{R}$$
+Nosso objetivo é criar um ambiente acolhedor e produtivo, onde todos possam aprender, ensinar e evoluir. A física é um campo desafiador, mas com apoio mútuo, a jornada pode ser mais leve e muito mais rica.
 
-Candidatos esquecem o termo centrípeto e erram o cálculo de $N$ — e portanto da força de atrito máxima.
+Acesse a página de [Grupos](/grupos) para entrar nas comunidades e fazer parte desse grupo que compartilha o mesmo entusiasmo pelo conhecimento científico.
+`,
 
-## 3. Sinais no trabalho de forças internas
+  'resultado-1a-fase-iypt-brasil-2025': `
+Foram recentemente divulgadas no site [iyptbrasil.com](https://www.iyptbrasil.com) as equipes classificadas para a **2ª Fase do IYPT Brasil 2025**. Após a 1ª Fase da competição — que consistiu na submissão de dois relatórios escritos e dois vídeos com propostas de solução de 3 dos 17 problemas do torneio — 24 equipes avançaram.
 
-Em sistemas de dois corpos, as forças internas formam pares ação-reação. O trabalho total das forças internas **não é zero** (só o impulso total é zero). Isso importa ao calcular energia em colisões parcialmente inelásticas.
+## Equipes classificadas
 
-## 4. Campo vs. potencial elétrico — confusão de sinais
+As equipes representam uma diversidade de estados brasileiros: São Paulo (SP), Goiás (GO), Ceará (CE), Pernambuco (PE), Minas Gerais (MG), Piauí (PI) e Paraíba (PB).
 
-$\\vec{E} = -\\nabla V$. O campo aponta no sentido de **queda** do potencial, não de crescimento. Uma carga positiva se move de alto para baixo potencial espontaneamente, ganhando energia cinética.
+Entre as classificadas estão: Anjos de Maxwell (Colégio Objetivo Integrado/SP), Barbie Gauss (Colégio Arena/GO), Bohr'a Bill (Colégio Etapa Valinhos/SP), Feynomenais (Colégio Teleyos/CE), Física de Buteco (Colégio Bernoulli/MG), Gatas de Schrödinger (Instituto Dom Barreto/PI), e mais 18 equipes.
 
-## 5. Óptica: confundir objeto real e virtual
+## Próxima etapa: Physics Fights
 
-Em sistemas de múltiplas lentes, a imagem de uma lente é o objeto da próxima. Se a imagem cai **depois** da segunda lente, o objeto para ela é **virtual** ($d_o < 0$ na convenção de sinais). Ignorar isso inverte o resultado.
+Avançamos para a etapa de **Physics Fights online**. Nesta etapa, as equipes terão a oportunidade de debater suas soluções, defender ideias e refutar argumentos de outras equipes, consolidando o espírito investigativo e colaborativo que é a essência do IYPT.
 
-## Conclusão
+A **2ª Fase** foi realizada em formato online. Este foi o momento em que as equipes demonstraram suas habilidades em defesa de seus trabalhos, argumentação científica e trabalho em equipe.
 
-Esses erros têm uma coisa em comum: são conceituais, não algébricos. A melhor preparação é resolver problemas comentando em voz alta o raciocínio físico — não apenas o resultado.
-    `,
-  },
-  'osciladores-acoplados-modos-normais': {
-    title: 'Osciladores acoplados e modos normais de vibração',
-    date: '2025-03-10',
-    category: 'Mecânica',
-    readTime: '10 min',
-    content: `
-Osciladores acoplados são um dos tópicos mais elegantes da mecânica clássica — e aparecem em olimpíadas internacionais com frequência crescente. A ideia central é que um sistema com $N$ graus de liberdade tem exatamente $N$ modos normais, cada um oscilando com frequência definida.
-
-## Configuração do problema
-
-Considere duas massas iguais $m$ conectadas por três molas: duas externas com constante $k$ e uma central com constante $k_c$.
-
-As equações de movimento são:
-
-$$m\\ddot{x}_1 = -kx_1 + k_c(x_2 - x_1)$$
-$$m\\ddot{x}_2 = -kx_2 - k_c(x_2 - x_1)$$
-
-## Modos normais
-
-Tentamos soluções da forma $x_1 = A_1 e^{i\\omega t}$, $x_2 = A_2 e^{i\\omega t}$. O sistema torna-se:
-
-$$\\begin{pmatrix} k + k_c & -k_c \\\\ -k_c & k + k_c \\end{pmatrix} \\begin{pmatrix} A_1 \\\\ A_2 \\end{pmatrix} = m\\omega^2 \\begin{pmatrix} A_1 \\\\ A_2 \\end{pmatrix}$$
-
-As frequências naturais saem do determinante secular:
-
-$$\\omega_1^2 = \\frac{k}{m} \\quad \\text{(modo simétrico: } A_1 = A_2\\text{)}$$
-
-$$\\omega_2^2 = \\frac{k + 2k_c}{m} \\quad \\text{(modo antissimétrico: } A_1 = -A_2\\text{)}$$
-
-## Batimentos
-
-Se você excitar apenas uma das massas com amplitude $A$, o movimento resultante é uma superposição dos dois modos:
-
-$$x_1(t) = A\\cos\\left(\\frac{\\omega_2 - \\omega_1}{2}t\\right)\\cos\\left(\\frac{\\omega_2 + \\omega_1}{2}t\\right)$$
-
-A energia oscila entre as duas massas com período $T_{bat} = 2\\pi/(\\omega_2 - \\omega_1)$.
-
-## Aplicações em olimpíadas
-
-Esse problema apareceu na IPhO 2021 em versão 3D (rede cristalina). A estratégia é sempre a mesma: encontrar os modos normais, depois expressar o movimento inicial como combinação linear deles.
-
-Use a simulação de [Osciladores Acoplados](/simulacoes) para visualizar os dois modos antes de resolver os problemas.
-    `,
-  },
+Parabenizamos todas as equipes classificadas pela dedicação demonstrada!
+`,
 }
 
 export async function generateStaticParams() {
-  return Object.keys(posts).map(slug => ({ slug }))
+  return Object.keys(fullContent).map(slug => ({ slug }))
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
-  const post = posts[slug]
+  const post = posts.find(p => p.slug === slug)
   return { title: post?.title ?? 'Post não encontrado' }
 }
 
-// Simple markdown-to-HTML for the blog content
-function renderContent(md: string) {
-  const html = md
-    .replace(/^## (.+)$/gm, '<h2 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--color-text);margin:2rem 0 0.75rem">$1</h2>')
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+function renderMd(text: string) {
+  return text
+    .replace(/^## (.+)$/gm, '<h2 style="font-family:var(--font-display);font-size:21px;font-weight:700;color:var(--color-text);margin:2rem 0 0.75rem">$1</h2>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--color-text)">$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    .replace(/`([^`]+)`/g, '<code style="background:rgba(228,173,65,0.12);padding:1px 6px;border-radius:3px;font-size:0.9em">$1</code>')
-    .replace(/\$\$([\s\S]+?)\$\$/g, '<div class="katex-block" data-expr="$1" style="text-align:center;padding:12px;margin:16px 0;background:rgba(228,173,65,0.06);border-radius:8px;font-style:italic;color:var(--color-gold)">$1</div>')
-    .replace(/\$([^\n$]+?)\$/g, '<span style="font-style:italic;color:var(--color-gold-lt)">$1</span>')
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" style="color:var(--color-gold);text-decoration:underline">$1</a>')
-    .replace(/\n\n/g, '</p><p style="margin-bottom:1rem;color:var(--color-muted);line-height:1.8;font-size:16px">')
-  return `<p style="margin-bottom:1rem;color:var(--color-muted);line-height:1.8;font-size:16px">${html}</p>`
+    .replace(/`([^`]+)`/g, '<code style="background:rgba(228,173,65,0.12);padding:1px 5px;border-radius:3px;font-size:0.9em">$1</code>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" style="color:var(--color-gold);text-decoration:underline">$1</a>')
+    .replace(/^- (.+)$/gm, '<li style="margin-bottom:6px;color:var(--color-muted)">$1</li>')
+    .replace(/(<li.*<\/li>\n?)+/g, s => `<ul style="padding-left:1.5rem;margin:1rem 0">${s}</ul>`)
+    .replace(/\n\n/g, '</p><p style="color:var(--color-muted);font-size:16px;line-height:1.8;margin-bottom:1rem">')
 }
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const post = posts[slug]
+  const post = posts.find(p => p.slug === slug)
+  const content = fullContent[slug]
 
-  if (!post) return (
+  if (!post || !content) return (
     <div className="max-w-3xl mx-auto px-4 py-24 text-center">
       <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 28, color: 'var(--color-text)', marginBottom: '1rem' }}>Post não encontrado</h1>
       <Link href="/blog" style={{ color: 'var(--color-gold)' }}>← Voltar ao Blog</Link>
@@ -171,34 +124,68 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   )
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-16">
-      <Link href="/blog" className="inline-flex items-center gap-2 text-sm mb-8 hover-gold"
-        style={{ fontFamily: 'var(--font-display)' }}>
-        <ArrowLeft size={14} /> Voltar ao Blog
-      </Link>
+    <div style={{ background: 'var(--color-bg)' }}>
 
-      <div className="flex items-center gap-3 mb-4">
-        <span className="px-3 py-1 rounded-full text-xs font-semibold"
-          style={{ background: 'rgba(228,173,65,0.12)', color: 'var(--color-gold)', fontFamily: 'var(--font-display)' }}>
-          {post.category}
-        </span>
-        <time style={{ color: 'var(--color-muted)', fontSize: 13 }}>
-          {new Date(post.date).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}
-        </time>
-        <span style={{ color: 'var(--color-muted)', fontSize: 13 }}>· {post.readTime} de leitura</span>
+      {/* Cover */}
+      <div style={{ height: 320, position: 'relative', background: 'var(--color-surface)', overflow: 'hidden' }}>
+        <img src={post.image} alt={post.title}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: 0.7 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.8) 40%, transparent 100%)' }} />
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '32px', maxWidth: 760, margin: '0 auto' }}>
+          <span style={{ background: 'rgba(228,173,65,0.15)', border: '1px solid rgba(228,173,65,0.4)', borderRadius: 20,
+            padding: '4px 12px', fontSize: 11, color: 'var(--color-gold)', fontFamily: 'var(--font-display)', letterSpacing: '0.1em' }}>
+            {post.category}
+          </span>
+        </div>
       </div>
 
-      <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 32, fontWeight: 700, color: 'var(--color-text)', lineHeight: 1.2, marginBottom: '2rem' }}>
-        {post.title}
-      </h1>
+      <div className="max-w-3xl mx-auto px-4 py-12">
+        <Link href="/blog" className="inline-flex items-center gap-2 text-sm mb-8 hover-gold" style={{ fontFamily: 'var(--font-display)' }}>
+          <ArrowLeft size={14} /> Voltar ao Blog
+        </Link>
 
-      <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: '2rem' }}
-        dangerouslySetInnerHTML={{ __html: renderContent(post.content) }} />
+        {/* Meta */}
+        <div className="flex items-center gap-4 mb-6">
+          <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(228,173,65,0.15)',
+            border: '1px solid rgba(228,173,65,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 700, color: 'var(--color-gold)', flexShrink: 0 }}>
+            IG
+          </div>
+          <div>
+            <p style={{ fontFamily: 'var(--font-display)', fontWeight: 600, color: 'var(--color-text)', fontSize: 14 }}>{post.author}</p>
+            <div className="flex items-center gap-2">
+              <time style={{ color: 'var(--color-muted)', fontSize: 12 }}>
+                {new Date(post.date).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </time>
+              <span style={{ color: 'var(--color-muted)', fontSize: 12 }}>· {post.readTime} de leitura</span>
+            </div>
+          </div>
+        </div>
 
-      <div className="mt-12 p-6 rounded-xl" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-        <p style={{ color: 'var(--color-muted)', fontSize: 13, marginBottom: '0.25rem', fontFamily: 'var(--font-display)' }}>Escrito por</p>
-        <p style={{ color: 'var(--color-text)', fontWeight: 600, fontFamily: 'var(--font-display)' }}>Prof. Dr. Ivan Guilhon</p>
-        <p style={{ color: 'var(--color-muted)', fontSize: 13 }}>Física em Nível Olímpico</p>
+        <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem, 4vw, 2.2rem)', fontWeight: 700,
+          color: 'var(--color-text)', lineHeight: 1.2, marginBottom: '2rem' }}>
+          {post.title}
+        </h1>
+
+        {/* Body */}
+        <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: '2rem' }}
+          dangerouslySetInnerHTML={{ __html: `<p style="color:var(--color-muted);font-size:16px;line-height:1.8;margin-bottom:1rem">${renderMd(content.trim())}</p>` }} />
+
+        {/* Author card */}
+        <div className="mt-12 flex items-start gap-4 p-6 rounded-xl"
+          style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
+          <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'rgba(228,173,65,0.15)',
+            border: '2px solid rgba(228,173,65,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: 'var(--color-gold)', flexShrink: 0 }}>
+            IG
+          </div>
+          <div>
+            <p style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: 'var(--color-text)', marginBottom: 4 }}>Prof. Dr. Ivan Guilhon</p>
+            <p style={{ color: 'var(--color-muted)', fontSize: 14, lineHeight: 1.6 }}>
+              Doutor em Física, coordenador do IYPT Brasil, autor de quatro livros e criador da plataforma Física em Nível Olímpico.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   )
