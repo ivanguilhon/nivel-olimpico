@@ -169,7 +169,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {[
-            { img: IMG.fno, subtitle: 'Volumes 1, 2 e 3', title: 'Física em Nível Olímpico', desc: 'Vasta coletânea de problemas para OBF, OIbF, EuPhO e IPhO — com dicas e soluções detalhadas.', links: [{l:'Livros Físicos', h:'https://vestseller.com.br/catalogsearch/result/?q=ivan+guilhon'},{l:'Ebooks',h:'/livros'}] },
+            { img: IMG.fnoVol2, subtitle: 'Volumes I, II e III', title: 'Física em Nível Olímpico', desc: 'Vasta coletânea de problemas para OBF, OIbF, EuPhO e IPhO — com dicas e soluções detalhadas.', links: [{l:'Ver livros', h:'/livros'},{l:'Livro Físico',h:'https://vestseller.com.br/catalogsearch/result/?q=ivan+guilhon'}] },
             { img: IMG.estudoEficaz, subtitle: 'Inteligência, Virtudes e Provas', title: 'Estudo Eficaz', desc: 'Como desenvolver inteligência, cultivar virtudes e ter alto desempenho em provas e exames.', links: [{l:'Ebook',h:'https://pay.hotmart.com/X72216388W'},{l:'Livro Físico',h:'https://vestseller.com.br/estudo%20eficaz'}] },
           ].map(book => (
             <div key={book.title} className="rounded-2xl overflow-hidden flex flex-col sm:flex-row" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>

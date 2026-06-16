@@ -1,26 +1,33 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { IMG } from '@/components/SalesComponents'
 
 export const metadata: Metadata = { title: 'Livros' }
 
 const livros = [
   {
-    img: IMG.fno,
-    tag: 'Volumes 1, 2 e 3',
+    img:   IMG.fnoVol2,
+    tag:   'Volume II — Eletromagnetismo & Óptica',
     title: 'Física em Nível Olímpico',
-    desc: 'Vasta coletânea de problemas para OBF, OIbF, EuPhO e IPhO. Todos com dicas e soluções detalhadas. Co-autoria com Prof. Dr. Gustavo Melo (Vol. 3).',
+    desc:  'Eletrostática, magnetismo, indução eletromagnética e óptica ondulatória em nível de olimpíadas internacionais. Todos os problemas com dicas e soluções detalhadas.',
     links: [
-      { label: 'Livros Físicos', href: 'https://vestseller.com.br/catalogsearch/result/?q=ivan+guilhon' },
-      { label: 'Ebook Vol. 1',   href: 'https://pay.hotmart.com/L94437942W' },
-      { label: 'Ebook Vol. 2',   href: 'https://pay.hotmart.com/V94457853L' },
+      { label: 'Livro Físico', href: 'https://vestseller.com.br/catalogsearch/result/?q=ivan+guilhon' },
+      { label: 'Ebook Vol. 2', href: 'https://pay.hotmart.com/V94457853L' },
     ],
   },
   {
-    img: IMG.estudoEficaz,
-    tag: 'Inteligência, Virtudes e Provas',
+    img:   IMG.fnoVol3,
+    tag:   'Volume III — Física Moderna · co-autoria Prof. Dr. Gustavo Melo',
+    title: 'Física em Nível Olímpico',
+    desc:  'Relatividade especial, mecânica quântica elementar e física atômica para as provas mais avançadas da OBF e IPhO.',
+    links: [
+      { label: 'Livro Físico', href: 'https://vestseller.com.br/catalogsearch/result/?q=ivan+guilhon' },
+    ],
+  },
+  {
+    img:   IMG.estudoEficaz,
+    tag:   'Inteligência, Virtudes e Provas',
     title: 'Estudo Eficaz',
-    desc: 'Reflexões sobre desenvolvimento da inteligência, formação de virtudes e desempenho em provas e exames. O livro que todo estudante olímpico deveria ler.',
+    desc:  'Reflexões sobre desenvolvimento da inteligência, formação de virtudes e desempenho em provas e exames. O livro que todo estudante olímpico deveria ler.',
     links: [
       { label: 'Ebook',        href: 'https://pay.hotmart.com/X72216388W' },
       { label: 'Livro Físico', href: 'https://vestseller.com.br/estudo%20eficaz' },
@@ -35,19 +42,15 @@ export default function LivrosPage() {
         Livros
       </h1>
       <div className="flex flex-col gap-8">
-        {livros.map(l => (
-          <div key={l.title} className="rounded-2xl overflow-hidden flex flex-col sm:flex-row"
+        {livros.map((l, i) => (
+          <div key={i} className="rounded-2xl overflow-hidden flex flex-col sm:flex-row"
             style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-
-            {/* Book cover */}
             <div style={{ width: 200, flexShrink: 0, background: 'var(--color-bg)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 32, minHeight: 200 }}>
+              display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 32, minHeight: 220 }}>
               <img src={l.img} alt={l.title}
-                style={{ maxWidth: '100%', maxHeight: 220, objectFit: 'contain',
-                  filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.5))' }} />
+                style={{ maxWidth: '100%', maxHeight: 240, objectFit: 'contain',
+                  filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.6))' }} />
             </div>
-
-            {/* Content */}
             <div className="p-8 flex flex-col flex-1">
               <p style={{ color: 'var(--color-gold)', fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '0.5rem', fontFamily: 'var(--font-display)' }}>
                 {l.tag}
@@ -70,15 +73,12 @@ export default function LivrosPage() {
         ))}
       </div>
 
-      {/* Author note */}
-      <div className="mt-12 p-6 rounded-xl text-center" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-        <p style={{ color: 'var(--color-muted)', fontSize: 14 }}>
+      <div className="mt-10 p-6 rounded-xl text-center" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
+        <p style={{ color: 'var(--color-muted)', fontSize: 14, fontFamily: 'var(--font-display)' }}>
           Todos os livros disponíveis também na{' '}
-          <a href="https://www.amazon.com.br/shop/prof.ivanguilhon" target="_blank" rel="noopener noreferrer"
-            style={{ color: 'var(--color-gold)' }}>Amazon</a>
-          {' '}e aceitam pagamento em{' '}
-          <a href="https://www.nivelolimpico.com.br/post/como-comprar-seus-livros-com-criptomoedas" target="_blank" rel="noopener noreferrer"
-            style={{ color: 'var(--color-gold)' }}>criptomoedas (BTC, ETH, SOL)</a>.
+          <a href="https://www.amazon.com.br/shop/prof.ivanguilhon" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-gold)' }}>Amazon</a>
+          {' '}· Aceitamos{' '}
+          <a href="https://www.nivelolimpico.com.br/post/como-comprar-seus-livros-com-criptomoedas" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-gold)' }}>Bitcoin, Ethereum e Solana</a>
         </p>
       </div>
     </div>

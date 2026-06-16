@@ -2,13 +2,14 @@
 import { useState } from 'react'
 import { ChevronDown, Check, ShieldCheck, Star } from 'lucide-react'
 
-const GITLAB = 'https://ivanguilhonn.gitlab.io/meusite/files'
 export const IMG = {
-  perfil:       `${GITLAB}/perfil.jpg`,
-  estudoEficaz: `${GITLAB}/estudoEficaz3D.png`,
-  fno:          `${GITLAB}/FNO3D.jpg`,
-  latex:        `${GITLAB}/latex-site.png`,
-  cife:         `${GITLAB}/cife.png`,
+  perfil:       '/images/ivan-guilhon.webp',
+  estudoEficaz: '/images/estudo-eficaz.webp',
+  fnoVol2:      '/images/fno-vol2.webp',
+  fnoVol3:      '/images/fno-vol3.webp',
+  fno:          '/images/fno-vol2.webp',   // default FNO image
+  latex:        'https://ivanguilhonn.gitlab.io/meusite/files/latex-site.png',
+  cife:         'https://ivanguilhonn.gitlab.io/meusite/files/cife.png',
 }
 
 export function CtaButton({ href, children, size = 'lg' }: { href: string; children: React.ReactNode; size?: 'sm' | 'lg' }) {
@@ -110,8 +111,8 @@ export function Instructor() {
       style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
       {/* Real photo */}
       <img src={IMG.perfil} alt="Prof. Dr. Ivan Guilhon"
-        style={{ width: 100, height: 100, borderRadius: '50%', objectFit: 'cover',
-          border: '2px solid var(--color-gold)', flexShrink: 0 }} />
+        style={{ width: 120, height: 120, borderRadius: '50%', objectFit: 'cover',
+          objectPosition: 'center top', border: '2px solid var(--color-gold)', flexShrink: 0 }} />
       <div>
         <p style={{ color: 'var(--color-gold)', fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', fontFamily: 'var(--font-display)', marginBottom: 4 }}>
           Seu professor
