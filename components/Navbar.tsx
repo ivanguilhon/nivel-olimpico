@@ -12,7 +12,11 @@ const cursosLinks = [
 
 const navLinks = [
   { label: 'Home',        href: '/' },
-  { label: 'Livros',      href: '/livros' },
+  { label: 'Livros', href: '/livros', dropdown: [
+    { label: 'Física em Nível Olímpico', href: '/livros/fisica-em-nivel-olimpico' },
+    { label: 'Estudo Eficaz',            href: '/livros/estudo-eficaz' },
+    { label: 'Ver todos os livros',      href: '/livros' },
+  ] },
   { label: 'Cursos',      href: '#', dropdown: cursosLinks },
   { label: 'Simulações',  href: '/simulacoes' },
   { label: 'Tutor IA',    href: '/tutor' },
