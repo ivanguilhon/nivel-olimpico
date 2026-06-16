@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import { IMG } from '@/components/SalesComponents'
+import {} from '@/components/SalesComponents'
+import { IMG } from '@/lib/images'
 
 export const metadata: Metadata = { title: 'Livros' }
 

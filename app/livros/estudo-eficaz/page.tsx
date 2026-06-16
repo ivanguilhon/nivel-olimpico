@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { FileText, Check } from 'lucide-react'
-import { CtaButton, GuaranteeBadge, Stars, Instructor, IMG } from '@/components/SalesComponents'
+import {CtaButton, GuaranteeBadge, Stars, Instructor} from '@/components/SalesComponents'
+import { IMG } from '@/lib/images'
 
 export const metadata: Metadata = {
   title: 'Estudo Eficaz — Inteligência, Virtudes e Provas',

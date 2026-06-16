@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Check, ArrowRight } from 'lucide-react'
-import { CtaButton, GuaranteeBadge, Testimonial, Module, FaqItem, Instructor, IMG } from '@/components/SalesComponents'
+import {CtaButton, GuaranteeBadge, Testimonial, Module, FaqItem, Instructor} from '@/components/SalesComponents'
+import { IMG } from '@/lib/images'
 
 export const metadata: Metadata = {
   title: 'Física Experimental — Domine a prova experimental das olimpíadas',

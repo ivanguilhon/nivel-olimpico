@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Check, FileText, ArrowRight } from 'lucide-react'
-import { CtaButton, GuaranteeBadge, Stars, Instructor, IMG } from '@/components/SalesComponents'
+import {CtaButton, GuaranteeBadge, Stars, Instructor} from '@/components/SalesComponents'
+import { IMG } from '@/lib/images'
 
 export const metadata: Metadata = {
   title: 'Física em Nível Olímpico — Coleção completa OBF, IPhO, ITA e IME',

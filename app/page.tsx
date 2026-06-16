@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ArrowRight, Check } from 'lucide-react'
-import { CtaButton, IMG } from '@/components/SalesComponents'
+import {CtaButton} from '@/components/SalesComponents'
+import { IMG } from '@/lib/images'
 
 const features = [
   { icon: '🏆', title: 'Cursos olímpicos',        desc: 'LaTeX, Física Experimental e Física Olímpica. Do zero ao nível internacional.' },

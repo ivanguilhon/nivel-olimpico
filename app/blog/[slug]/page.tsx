@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
-import { IMG } from '@/components/SalesComponents'
+import {} from '@/components/SalesComponents'
+import { IMG } from '@/lib/images'
 import { posts } from '../page'
 
 const fullContent: Record<string, string> = {

@@ -1,16 +1,9 @@
 'use client'
+import { IMG } from '@/lib/images'
+export { IMG } from '@/lib/images'
 import { useState } from 'react'
 import { ChevronDown, Check, ShieldCheck, Star } from 'lucide-react'
 
-export const IMG = {
-  perfil:       '/images/ivan-guilhon.webp',
-  estudoEficaz: '/images/estudo-eficaz.webp',
-  fnoVol2:      '/images/fno-vol2.webp',
-  fnoVol3:      '/images/fno-vol3.webp',
-  fno:          '/images/fno-vol2.webp',   // default FNO image
-  latex:        'https://ivanguilhonn.gitlab.io/meusite/files/latex-site.png',
-  cife:         'https://ivanguilhonn.gitlab.io/meusite/files/cife.png',
-}
 
 export function CtaButton({ href, children, size = 'lg' }: { href: string; children: React.ReactNode; size?: 'sm' | 'lg' }) {
   const pad = size === 'lg' ? '18px 40px' : '12px 24px'
@@ -111,8 +104,9 @@ export function Instructor() {
       style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
       {/* Real photo */}
       <img src={IMG.perfil} alt="Prof. Dr. Ivan Guilhon"
+        className="mx-auto sm:mx-0"
         style={{ width: 120, height: 120, borderRadius: '50%', objectFit: 'cover',
-          objectPosition: 'center top', border: '2px solid var(--color-gold)', flexShrink: 0 }} />
+          objectPosition: '50% 25%', border: '2px solid var(--color-gold)', flexShrink: 0, display: 'block' }} />
       <div>
         <p style={{ color: 'var(--color-gold)', fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', fontFamily: 'var(--font-display)', marginBottom: 4 }}>
           Seu professor
