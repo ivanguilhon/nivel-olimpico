@@ -132,7 +132,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       <div style={{ height: 320, position: 'relative', background: 'var(--color-surface)', overflow: 'hidden' }}>
         <img src={post.image} alt={post.title}
           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: 0.7 }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.8) 40%, transparent 100%)' }} />
+        <div style={({ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 40%, transparent 100%)', '--color-text': '#F0EDE8' }) as React.CSSProperties} />
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '32px', maxWidth: 760, margin: '0 auto' }}>
           <span style={{ background: 'rgba(228,173,65,0.15)', border: '1px solid rgba(228,173,65,0.4)', borderRadius: 20,
             padding: '4px 12px', fontSize: 11, color: 'var(--color-gold)', fontFamily: 'var(--font-display)', letterSpacing: '0.1em' }}>

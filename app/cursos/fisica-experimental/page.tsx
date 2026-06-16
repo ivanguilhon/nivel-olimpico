@@ -38,7 +38,7 @@ export default function FisicaExperimentalPage() {
     <div style={{ background: 'var(--color-bg)' }}>
 
       {/* ── HERO ── */}
-      <section style={{ background: 'linear-gradient(160deg, #000 0%, #001000 60%, #001a0d 100%)', borderBottom: '1px solid var(--color-border)', position: 'relative', overflow: 'hidden' }}>
+      <section style={{...({ background: 'linear-gradient(160deg, #000 0%, #001000 60%, #001a0d 100%)', borderBottom: '1px solid var(--color-nav-border)', position: 'relative', overflow: 'hidden', '--color-text': '#F0EDE8', '--color-muted': '#9A9A9A' } as React.CSSProperties)}}>
         <div style={{ position: 'absolute', top: '-40%', left: '-10%', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(228,173,65,0.05) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div className="max-w-4xl mx-auto px-4 py-20 text-center" style={{ position: 'relative' }}>
           <span style={{ display: 'inline-block', background: 'rgba(228,173,65,0.12)', border: '1px solid rgba(228,173,65,0.3)', borderRadius: 20, padding: '4px 14px', fontSize: 12, color: 'var(--color-gold)', fontFamily: 'var(--font-display)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 24 }}>

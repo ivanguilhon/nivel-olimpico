@@ -42,7 +42,7 @@ export default function LatexPage() {
     <div style={{ background: 'var(--color-bg)' }}>
 
       {/* ── HERO ── */}
-      <section style={{ background: 'linear-gradient(160deg, #000 0%, #0d0d00 60%, #1a1200 100%)', borderBottom: '1px solid var(--color-border)', position: 'relative', overflow: 'hidden' }}>
+      <section style={{...({ background: 'linear-gradient(160deg, #000 0%, #0d0d00 60%, #1a1200 100%)', borderBottom: '1px solid var(--color-nav-border)', position: 'relative', overflow: 'hidden', '--color-text': '#F0EDE8', '--color-muted': '#9A9A9A' } as React.CSSProperties)}}>
         {/* Decorative glow */}
         <div style={{ position: 'absolute', top: '-40%', right: '-10%', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(228,173,65,0.07) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div className="max-w-4xl mx-auto px-4 py-20 text-center" style={{ position: 'relative' }}>

@@ -1,5 +1,7 @@
 // Constantes de imagem — sem 'use client', acessível em server e client components
 export const IMG = {
+  logoFull: '/images/logo-full.png',
+  logoIso:  '/images/logo-iso.png',
   perfil:       '/images/ivan-guilhon.webp',
   estudoEficaz: '/images/estudo-eficaz.webp',
   fnoVol2:      '/images/fno-vol2.webp',

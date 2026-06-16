@@ -80,7 +80,7 @@ export default function FNOPage() {
     <div style={{ background: 'var(--color-bg)' }}>
 
       {/* ── HERO ── */}
-      <section style={{ background: 'linear-gradient(160deg, #000 0%, #0a0800 60%, #120f00 100%)', borderBottom: '1px solid var(--color-border)', position: 'relative', overflow: 'hidden' }}>
+      <section style={{...({ background: 'linear-gradient(160deg, #000 0%, #0a0800 60%, #120f00 100%)', borderBottom: '1px solid var(--color-nav-border)', position: 'relative', overflow: 'hidden', '--color-text': '#F0EDE8', '--color-muted': '#9A9A9A' } as React.CSSProperties)}}>
         <div style={{ position: 'absolute', top: '-30%', right: '-8%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(228,173,65,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div className="max-w-6xl mx-auto px-4 py-20 relative">
           <div className="flex flex-col lg:flex-row items-center gap-12">

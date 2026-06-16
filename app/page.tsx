@@ -48,7 +48,7 @@ export default function Home() {
   return (
     <>
       {/* ── HERO ── */}
-      <section style={{ background: 'linear-gradient(135deg, #000 0%, #0a0a00 60%, #111100 100%)', position: 'relative', overflow: 'hidden' }}>
+      <section style={{...({ background: 'linear-gradient(135deg, #000 0%, #0a0a00 60%, #111100 100%)', position: 'relative', overflow: 'hidden', '--color-text': '#F0EDE8', '--color-muted': '#9A9A9A' } as React.CSSProperties)}}>
         <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
           <div style={{ position: 'absolute', top: '-10%', right: '-5%', width: 600, height: 600, border: '1px solid rgba(228,173,65,0.1)', borderRadius: '50%' }} />
           <div style={{ position: 'absolute', top: '5%',  right: '8%',  width: 380, height: 380, border: '1px solid rgba(228,173,65,0.06)', borderRadius: '50%' }} />

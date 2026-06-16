@@ -2,17 +2,23 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap');
 
-/* ─── Brand tokens (Manual da Marca) ─── */
+/* ─── Tema claro (conteúdo) ─── */
 @theme {
-  --color-bg:       #000000;
-  --color-surface:  #111111;
-  --color-surface2: #1a1a1a;
-  --color-border:   #2a2a2a;
+  --color-bg:       #F4F2EE;
+  --color-surface:  #FFFFFF;
+  --color-surface2: #ECEAE5;
+  --color-border:   #D8D4CC;
   --color-gold:     #E4AD41;
   --color-gold-lt:  #F0C05A;
   --color-gray:     #3E3E3D;
-  --color-text:     #FFFFFF;
-  --color-muted:    #999999;
+  --color-text:     #1A1917;
+  --color-muted:    #6B6560;
+
+  /* Navbar e Footer permanecem escuros */
+  --color-nav:        #111111;
+  --color-nav-border: #2a2a2a;
+  --color-nav-text:   #F0EDE8;
+  --color-nav-muted:  #8A8A9A;
 
   --font-display: 'Outfit', system-ui, sans-serif;
   --font-body:    'Lato', system-ui, sans-serif;
@@ -28,10 +34,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  letter-spacing: -0.01em;
-}
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); letter-spacing: -0.01em; }
 
 .section-title {
   display: inline-block;
@@ -46,5 +49,17 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--color-gold);
 }
 
-.hover-gold        { color: var(--color-muted); transition: color 0.15s; }
-.hover-gold:hover  { color: var(--color-gold) !important; }
+/* Hover para fundo claro */
+.hover-gold       { color: var(--color-muted); transition: color 0.15s; }
+.hover-gold:hover { color: var(--color-gold) !important; }
+
+/* Seções escuras herdam texto claro via CSS custom props */
+.dark-section {
+  --color-text:   #F0EDE8;
+  --color-muted:  #9A9A9A;
+  --color-border: #2a2a2a;
+}
+
+/* Hover para footer/nav escuro */
+.nav-hover-gold       { color: var(--color-nav-muted); transition: color 0.15s; }
+.nav-hover-gold:hover { color: var(--color-gold) !important; }
