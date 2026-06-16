@@ -19,11 +19,11 @@ function VoteButtons({ id, type, initialCount }: VoteButtonsProps) {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
+    supabase.auth.getUser().then(({ data }: { data: any }) => {
       if (!data.user) return
       const col = type === 'question' ? 'question_id' : 'answer_id'
       supabase.from('votes').select('value').eq(col, id).eq('user_id', data.user.id).single()
-        .then(({ data: v }) => { if (v) setMyVote(v.value as 1 | -1) })
+        .then(({ data: v }: { data: any }) => { if (v) setMyVote(v.value as 1 | -1) })
     })
   }, [id, type])
 

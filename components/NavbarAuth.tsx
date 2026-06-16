@@ -1,23 +1,41 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase/client'
 import { LogOut, User } from 'lucide-react'
 
 export default function NavbarAuth() {
-  const [user, setUser] = useState<any>(undefined) // undefined = loading
+  const [user, setUser]   = useState<any>(null)
+  const [ready, setReady] = useState(false)
 
   useEffect(() => {
-    const supabase = createClient()
-    supabase.auth.getUser().then(({ data }) => setUser(data.user ?? null))
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
-      setUser(session?.user ?? null)
-    })
-    return () => subscription.unsubscribe()
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+    // If env vars are missing, just show "Entrar" — don't crash
+    if (!url || !key) {
+      setReady(true)
+      return
+    }
+
+    import('@/lib/supabase/client').then(({ createClient }) => {
+      const supabase = createClient()
+      if (!supabase) { setReady(true); return }
+
+      supabase.auth.getUser().then(({ data }: { data: any }) => {
+        setUser(data.user ?? null)
+        setReady(true)
+      })
+
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((_: any, session: any) => {
+        setUser(session?.user ?? null)
+      })
+      return () => subscription.unsubscribe()
+    }).catch(() => setReady(true))
   }, [])
 
-  if (user === undefined) return (
-    <div style={{ width: 80, height: 36, borderRadius: 8, background: 'var(--color-surface2)' }} />
+  // While loading, show a neutral placeholder
+  if (!ready) return (
+    <div style={{ width: 64, height: 32, borderRadius: 8, background: 'var(--color-nav-border)' }} />
   )
 
   if (user) return (
@@ -25,14 +43,14 @@ export default function NavbarAuth() {
       <div className="flex items-center gap-2 px-3 py-2 rounded-lg"
         style={{ background: 'var(--color-surface2)', border: '1px solid var(--color-border)' }}>
         <User size={14} style={{ color: 'var(--color-muted)' }} />
-        <span style={{ color: 'var(--color-muted)', fontSize: 12, fontFamily: 'var(--font-display)', maxWidth: 100,
-          overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+        <span style={{ color: 'var(--color-muted)', fontSize: 12, fontFamily: 'var(--font-display)',
+          maxWidth: 100, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {user.user_metadata?.full_name?.split(' ')[0] ?? user.email?.split('@')[0]}
         </span>
       </div>
       <form action="/auth/signout" method="POST">
         <button type="submit" title="Sair"
-          style={{ background: 'none', border: '1px solid var(--color-border)', borderRadius: 8,
+          style={{ background: 'none', border: '1px solid var(--color-nav-border)', borderRadius: 8,
             padding: '7px 10px', cursor: 'pointer', color: 'var(--color-muted)', display: 'flex' }}>
           <LogOut size={14} />
         </button>
