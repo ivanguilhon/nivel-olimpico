@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X, ChevronDown } from 'lucide-react'
+import NavbarAuth from '@/components/NavbarAuth'
 
 const cursosLinks = [
   { label: 'Física Olímpica',     href: 'https://militares.estrategia.com/concursos/cursos/fisica-olimpica' },
@@ -108,11 +109,7 @@ export default function Navbar() {
               </Link>
             )
           )}
-          <Link href="/login"
-            className="ml-3 px-4 py-2 rounded text-sm font-semibold transition-all"
-            style={{ background: 'var(--color-gold)', color: '#000', fontFamily: 'var(--font-display)' }}>
-            Entrar
-          </Link>
+          <NavbarAuth />
         </nav>
 
         {/* Mobile toggle */}
@@ -142,11 +139,9 @@ export default function Navbar() {
               </Link>
             )
           )}
-          <Link href="/login" onClick={() => setOpen(false)}
-            className="mt-2 block w-full text-center px-4 py-2 rounded text-sm font-semibold"
-            style={{ background: 'var(--color-gold)', color: '#000', fontFamily: 'var(--font-display)' }}>
-            Entrar
-          </Link>
+          <div className="mt-2">
+            <NavbarAuth />
+          </div>
         </div>
       )}
     </header>
