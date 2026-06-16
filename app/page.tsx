@@ -195,6 +195,81 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* ── SOBRE O PROFESSOR ── */}
+      <section style={{ background: 'var(--color-surface)', borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
+        <div className="max-w-7xl mx-auto px-4 py-20">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+
+            {/* Photo */}
+            <div className="flex-shrink-0 relative">
+              <div style={{ width: 320, height: 400, borderRadius: 16, overflow: 'hidden',
+                border: '2px solid var(--color-border)',
+                boxShadow: '0 24px 80px rgba(0,0,0,0.6)' }}>
+                <img src={IMG.ivanMedalha} alt="Prof. Dr. Ivan Guilhon"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 15%' }} />
+              </div>
+              {/* Medal badge */}
+              <div style={{ position: 'absolute', bottom: -16, right: -16, background: 'var(--color-gold)',
+                borderRadius: 12, padding: '10px 16px', boxShadow: '0 8px 24px rgba(228,173,65,0.4)' }}>
+                <p style={{ fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 700, color: '#000', letterSpacing: '0.05em' }}>
+                  🥈 IPhO · 🥇 OBF
+                </p>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="flex-1">
+              <p style={{ color: 'var(--color-gold)', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase',
+                fontFamily: 'var(--font-display)', marginBottom: 12 }}>
+                Quem é o professor
+              </p>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 700,
+                color: 'var(--color-text)', lineHeight: 1.15, marginBottom: 20 }}>
+                Prof. Dr. Ivan Guilhon
+              </h2>
+              <p style={{ color: 'var(--color-muted)', fontSize: 16, lineHeight: 1.8, marginBottom: 16 }}>
+                Engenheiro Eletrônico pelo ITA (<em>Magna Cum Laude</em>, 2014) e Doutor em Física Atômica e Molecular
+                pelo ITA (2017, aos 25 anos). Professor no Departamento de Física do ITA e coordenador do IYPT Brasil.
+              </p>
+              <p style={{ color: 'var(--color-muted)', fontSize: 16, lineHeight: 1.8, marginBottom: 28 }}>
+                Aprovado em 1º lugar no concurso para professor do ITA aos 26 anos. Autor de 4 livros e 15 artigos
+                científicos internacionais. Como estudante, conquistou medalha de Prata na IPhO e Ouro na OBF.
+              </p>
+
+              {/* Credentials grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+                {[
+                  { n: '🥈', label: 'Prata IPhO' },
+                  { n: '🥇', label: 'Ouro OBF' },
+                  { n: '4',  label: 'Livros publicados' },
+                  { n: '15', label: 'Artigos internacionais' },
+                ].map(({ n, label }) => (
+                  <div key={label} className="text-center p-3 rounded-lg"
+                    style={{ background: 'var(--color-bg)', border: '1px solid var(--color-border)' }}>
+                    <p style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 700, color: 'var(--color-gold)' }}>{n}</p>
+                    <p style={{ color: 'var(--color-muted)', fontSize: 12, lineHeight: 1.4 }}>{label}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                <a href="https://www.instagram.com/prof.ivanguilhon/" target="_blank" rel="noopener noreferrer"
+                  style={{ padding: '10px 20px', borderRadius: 8, border: '1px solid var(--color-border)',
+                    color: 'var(--color-muted)', fontFamily: 'var(--font-display)', fontSize: 14, textDecoration: 'none' }}>
+                  Instagram
+                </a>
+                <a href="https://wa.me/5512988616486" target="_blank" rel="noopener noreferrer"
+                  style={{ padding: '10px 20px', borderRadius: 8, background: 'var(--color-gold)',
+                    color: '#000', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 14, textDecoration: 'none' }}>
+                  WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA FINAL ── */}
       <section style={{ background: 'var(--color-surface)', borderTop: '1px solid var(--color-border)' }}>
         <div className="max-w-3xl mx-auto px-4 py-16 text-center">

@@ -7,4 +7,5 @@ export const IMG = {
   fno:          '/images/fno-vol2.webp',
   latex:        'https://ivanguilhonn.gitlab.io/meusite/files/latex-site.png',
   cife:         'https://ivanguilhonn.gitlab.io/meusite/files/cife.png',
+  ivanMedalha:  '/images/ivan-medalha.webp',
 }
