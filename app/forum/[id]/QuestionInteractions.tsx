@@ -88,7 +88,7 @@ function AnswerForm({ questionId, onSubmitted }: AnswerFormProps) {
   const [user, setUser]         = useState<any>(null)
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setUser(data.user))
+    supabase.auth.getUser().then(({ data }: { data: any }) => setUser(data.user))
   }, [])
 
   async function submit(e: React.FormEvent) {
@@ -173,7 +173,7 @@ export default function QuestionInteractions({ question, answers: initialAnswers
   const [user, setUser]       = useState<any>(null)
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setUser(data.user))
+    supabase.auth.getUser().then(({ data }: { data: any }) => setUser(data.user))
   }, [])
 
   const addAnswer = (answer: any) => {

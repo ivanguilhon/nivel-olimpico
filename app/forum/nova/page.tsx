@@ -27,11 +27,11 @@ export default function NovaPerguntaPage() {
     import('@/lib/supabase/client').then(({ createClient }) => {
       const sb = createClient()
       supabaseRef.current = sb
-      sb.auth.getUser().then(({ data }) => {
+      sb.auth.getUser().then(({ data }: { data: any }) => {
         if (!data.user) router.push('/login?next=/forum/nova')
         else setUser(data.user)
       })
-      sb.from('tags').select('*').order('category').order('name').then(({ data }) => {
+      sb.from('tags').select('*').order('category').order('name').then(({ data }: { data: any }) => {
         if (data) setAllTags(data as Tag[])
       })
     })
