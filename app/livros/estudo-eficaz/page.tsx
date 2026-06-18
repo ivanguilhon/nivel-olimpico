@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const WIX = 'https://www.nivelolimpico.com.br/_files/ugd'
 const EBOOK  = 'https://pay.hotmart.com/X72216388W'
-const FISICO = 'https://vestseller.com.br/estudo%20eficaz'
+const FISICO = 'https://vestseller.com.br/estudo%20eficaz%20-%20intelig%C3%AAncia,%20virtudes%20e%20provas%20-%20prof.%20dr.%20ivan%20guilhon%20mitoso%20rocha%20/1441.html'
 const SAMPLE = `${WIX}/8dc56f_28b1a723f4f2466e99bd689b8b0420a4.pdf`
 
 const testimonials = [

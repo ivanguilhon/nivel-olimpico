@@ -41,7 +41,7 @@ const livros = [
     desc:  'Reflexões sobre desenvolvimento da inteligência, formação de virtudes e desempenho em provas e exames. O livro que todo estudante olímpico deveria ler.',
     links: [
       { label: 'Ebook',        href: 'https://pay.hotmart.com/X72216388W' },
-      { label: 'Livro Físico', href: 'https://vestseller.com.br/estudo%20eficaz' },
+      { label: 'Livro Físico', href: 'https://vestseller.com.br/estudo%20eficaz%20-%20intelig%C3%AAncia,%20virtudes%20e%20provas%20-%20prof.%20dr.%20ivan%20guilhon%20mitoso%20rocha%20/1441.html' },
     ],
   },
 ]

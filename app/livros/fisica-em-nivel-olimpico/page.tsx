@@ -41,7 +41,7 @@ const volumes = [
     desc:   'Física experimental para olimpíadas: medidas, incertezas, análise de dados e mais de 30 experimentos propostos com materiais de baixo custo.',
     topics: ['Incertezas e erros de medida', 'Análise estatística de dados', 'Construção e linearização de gráficos', 'Regressão com calculadora científica', 'Mais de 30 experimentos (formato OBF/IPhO)'],
     sample: `${WIX}/8dc56f_c4691e103fd140f984772868eb7c662d.pdf`,
-    ebook:  'https://pay.hotmart.com/G101483968F',
+    ebook:  'https://pay.hotmart.com/G101483968F?sck=HOTMART_PRODUCT_PAGE&hotfeature=32&_gl=1*khryx4*_gcl_au*MTU2MzY0OTg4MS4xNzc0NTU2MTYx*_ga*MTA1NzcyNDM1Ni4xNzU2NzI3MDkx*_ga_2J9NLPEWPF*czE3ODE4MDI3MjIkbzY4JGcxJHQxNzgxODAyNzI2JGo1NiRsMCRoMA..&bid=1781802732137',
     fisico: 'https://vestseller.com.br/catalogsearch/result/?q=fisica+em+nivel+olimpico+volume+3',
     coauthor: true,
   },
