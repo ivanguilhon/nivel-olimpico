@@ -50,11 +50,8 @@ export default function Navbar() {
 
         {/* Logo — imagem real */}
         <Link href="/" className="flex items-center gap-3">
-          <div style={{ background: '#FFFFFF', borderRadius: 8, padding: '4px 6px',
-            display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Image src="/images/logo-full.png" alt="Física em Nível Olímpico"
-              width={90} height={65} style={{ objectFit: 'contain' }} priority />
-          </div>
+          <Image src="/images/logo-full-transparent.png" alt="Física em Nível Olímpico"
+            width={120} height={36} style={{ objectFit: 'contain' }} priority />
         </Link>
 
         {/* Desktop nav */}
