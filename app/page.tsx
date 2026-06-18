@@ -4,9 +4,9 @@ import {CtaButton} from '@/components/SalesComponents'
 import { IMG } from '@/lib/images'
 
 const features = [
-  { icon: '🏆', title: 'Cursos olímpicos',        desc: 'LaTeX, Física Experimental e Física Olímpica. Do zero ao nível internacional.' },
-  { icon: '📚', title: 'Livros de referência',     desc: '3 volumes com problemas comentados para OBF, IPhO, ITA e IME.' },
-  { icon: '⚛',  title: 'Simulações PhysSim',       desc: '8 simulações interativas: do lançamento oblíquo ao poço quântico.' },
+  { icon: '🏆', title: 'Cursos olímpicos',        desc: 'Turmas de preparação olímpica para OBF, OBFEP e outras olimpíadas científicas. Curso de introdução à Física Experimental.  Do zero ao nível internacional.' },
+  { icon: '📚', title: 'Livros de referência',     desc: 'Aprenda as minhas técnicas de estudo com o livro Estudo Eficaz. A coleção Física em Nível Olímpico 3 te leva até o nível avançado das olimpíadas de física.' },
+  { icon: '⚛',  title: 'Simulações PhysSim',       desc: '8 simulações interativas para vocês aprender física de um jeito novo.' },
 ]
 
 const courses = [
