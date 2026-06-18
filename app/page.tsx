@@ -7,7 +7,6 @@ const features = [
   { icon: '🏆', title: 'Cursos olímpicos',        desc: 'LaTeX, Física Experimental e Física Olímpica. Do zero ao nível internacional.' },
   { icon: '📚', title: 'Livros de referência',     desc: '3 volumes com problemas comentados para OBF, IPhO, ITA e IME.' },
   { icon: '⚛',  title: 'Simulações PhysSim',       desc: '8 simulações interativas: do lançamento oblíquo ao poço quântico.' },
-  { icon: '🤖', title: 'Tutor com IA',             desc: 'Claude Haiku especializado: resolução passo a passo com LaTeX.' },
 ]
 
 const courses = [
@@ -15,7 +14,7 @@ const courses = [
     tag: 'MAIS VENDIDO',
     title: 'LaTeX para Todos',
     desc: 'Do zero ao avançado: documentos, equações, apresentações e IA. Acaba com as horas perdidas no Word.',
-    benefits: ['8 módulos, zero instalação', 'Módulo exclusivo de IA + LaTeX', 'Acesso vitalício + atualizações'],
+    benefits: ['8 módulos, zero instalação', 'Módulo exclusivo de IA + LaTeX', 'Acesso por 1 ano + atualizações'],
     price: 'R$ 97',
     from: 'R$ 197',
     href: '/cursos/latex',
@@ -38,10 +37,10 @@ const courses = [
 ]
 
 const stats = [
-  { n: '15+', label: 'anos preparando candidatos ITA/IME' },
-  { n: '3',   label: 'livros publicados' },
+  { n: '20+', label: 'premiações olímpicas' },
+  { n: '4',   label: 'livros publicados' },
   { n: '8',   label: 'simulações interativas' },
-  { n: '2',   label: 'cursos online com acesso vitalício' },
+  { n: '2',   label: 'cursos online com acesso por 1 ano' },
 ]
 
 export default function Home() {
@@ -64,7 +63,7 @@ export default function Home() {
             <em style={{ color: 'var(--color-gold)', fontStyle: 'italic' }}>Nível Olímpico</em>
           </h1>
           <p style={{ color: 'var(--color-muted)', fontSize: 18, maxWidth: 500, lineHeight: 1.7, marginBottom: '2rem' }}>
-            Preparação completa para OBF, IPhO, ITA e IME — com cursos, livros, simulações e tutor com IA.
+            Preparação completa para OBF, IPhO, ITA e IME — com cursos, livros e simulações.
           </p>
           <div className="flex flex-wrap gap-4">
             <CtaButton href="/cursos/latex">Ver cursos →</CtaButton>

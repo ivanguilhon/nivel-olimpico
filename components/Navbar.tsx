@@ -23,7 +23,6 @@ const navLinks = [
   { label: 'Livros',      href: '/livros',       dropdown: livrosLinks },
   { label: 'Cursos',      href: '#',             dropdown: cursosLinks },
   { label: 'Simulações',  href: '/simulacoes' },
-  { label: 'Tutor IA',    href: '/tutor' },
   { label: 'Fórum',       href: '/forum' },
   { label: 'Blog',        href: '/blog' },
   { label: 'Links',       href: '/links' },

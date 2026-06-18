@@ -58,7 +58,7 @@ function LoginForm() {
             Bem-vindo de volta
           </h1>
           <p style={{ color: 'var(--color-muted)', fontSize: 15 }}>
-            Entre na sua conta para acessar o fórum e o tutor.
+            Entre na sua conta para acessar o fórum.
           </p>
         </div>
 

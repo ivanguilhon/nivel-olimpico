@@ -87,7 +87,7 @@ export default function RegisterPage() {
             Criar conta grátis
           </h1>
           <p style={{ color: 'var(--color-muted)', fontSize: 15 }}>
-            Acesse o fórum, o tutor de IA e conteúdo exclusivo.
+            Acesse o fórum e conteúdo exclusivo.
           </p>
         </div>
 
@@ -147,7 +147,6 @@ export default function RegisterPage() {
         <div className="mt-6 flex flex-col gap-2">
           {[
             'Acesso ao Fórum de Física',
-            'Tutor de IA (20 perguntas/dia)',
             'Grupos de discussão',
           ].map(b => (
             <div key={b} className="flex items-center gap-2">
