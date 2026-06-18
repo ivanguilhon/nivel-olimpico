@@ -4,6 +4,7 @@ export const IMG = {
   logoIso:  '/images/logo-iso.png',
   perfil:       '/images/ivan-guilhon.webp',
   estudoEficaz: '/images/estudo-eficaz.webp',
+  fnoVol1:      '/images/fno-vol1.webp',
   fnoVol2:      '/images/fno-vol2.webp',
   fnoVol3:      '/images/fno-vol3.webp',
   fno:          '/images/fno-vol2.webp',

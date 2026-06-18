@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Menu, X, ChevronDown } from 'lucide-react'
@@ -32,9 +32,20 @@ const navLinks = [
 export default function Navbar() {
   const [open, setOpen]         = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  const navRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setOpenDropdown(null)
+      }
+    }
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [])
 
   return (
-    <header style={{ background: 'var(--color-nav)', borderBottom: '1px solid var(--color-nav-border)' }}>
+    <header ref={navRef} style={{ background: 'var(--color-nav)', borderBottom: '1px solid var(--color-nav-border)' }}>
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
 
         {/* Logo — imagem real */}
@@ -53,22 +64,29 @@ export default function Navbar() {
               <div key={link.label} className="relative"
                 onMouseEnter={() => setOpenDropdown(link.label)}
                 onMouseLeave={() => setOpenDropdown(null)}>
-                <button className="flex items-center gap-1 px-3 py-2 rounded text-sm transition-colors"
+                <button
+                  onClick={(e) => { e.stopPropagation(); setOpenDropdown(openDropdown === link.label ? null : link.label) }}
+                  className="flex items-center gap-1 px-3 py-2 rounded text-sm transition-colors"
                   style={{ color: 'var(--color-nav-muted)', fontFamily: 'var(--font-display)', background: 'none', border: 'none', cursor: 'pointer' }}>
                   {link.label} <ChevronDown size={13} />
                 </button>
                 {openDropdown === link.label && (
-                  <div className="absolute top-full left-0 mt-1 rounded-lg shadow-xl z-50 min-w-[210px]"
-                    style={{ background: '#1a1a1a', border: '1px solid var(--color-nav-border)' }}>
-                    {link.dropdown.map(sub => (
-                      <Link key={sub.href} href={sub.href}
-                        className="block px-4 py-3 text-sm hover-gold"
-                        style={{ fontFamily: 'var(--font-display)', color: 'var(--color-nav-muted)',
-                          '--color-muted': 'var(--color-nav-muted)' } as React.CSSProperties}>
-                        {sub.label}
-                      </Link>
-                    ))}
-                  </div>
+                  <>
+                    {/* Bridge invisível: elimina o gap de hover entre o botão e o menu */}
+                    <div className="absolute top-full left-0 w-full" style={{ height: 8 }} />
+                    <div className="absolute left-0 rounded-lg shadow-xl z-50 min-w-[210px]"
+                      style={{ top: 'calc(100% + 8px)', background: '#1a1a1a', border: '1px solid var(--color-nav-border)' }}>
+                      {link.dropdown.map(sub => (
+                        <Link key={sub.href} href={sub.href}
+                          onClick={() => setOpenDropdown(null)}
+                          className="block px-4 py-3 text-sm hover-gold"
+                          style={{ fontFamily: 'var(--font-display)', color: 'var(--color-nav-muted)',
+                            '--color-muted': 'var(--color-nav-muted)' } as React.CSSProperties}>
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </>
                 )}
               </div>
             ) : (

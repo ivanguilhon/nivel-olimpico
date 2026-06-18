@@ -13,7 +13,7 @@ const WIX = 'https://www.nivelolimpico.com.br/_files/ugd'
 const volumes = [
   {
     num:    'Volume I',
-    img:    IMG.fnoVol2, // using vol2 as representativa até ter vol1
+    img:    IMG.fnoVol1,
     tag:    'Mecânica · Termologia · Óptica · Ondulatória',
     pages:  327,
     desc:   '85 desafios de Física para OBF, OBFEP, SOIF, TBF, OIbF e IPhO. Todos com dicas e soluções completas.',

@@ -6,6 +6,16 @@ export const metadata: Metadata = { title: 'Livros' }
 
 const livros = [
   {
+    img:   IMG.fnoVol1,
+    tag:   'Volume I — Mecânica, Termologia & Óptica',
+    title: 'Física em Nível Olímpico',
+    desc:  '85 desafios de Física para OBF, OBFEP, SOIF, TBF, OIbF e IPhO: cinemática e dinâmica, termologia e gases ideais, termodinâmica, óptica geométrica e física, e ondulatória. Todos com dicas e soluções completas.',
+    links: [
+      { label: 'Livro Físico', href: 'https://vestseller.com.br/fisica-em-nivel-olimpico-volume-1-ivan-guilhon.html' },
+      { label: 'Ebook Vol. 1', href: 'https://pay.hotmart.com/L94437942W' },
+    ],
+  },
+  {
     img:   IMG.fnoVol2,
     tag:   'Volume II — Eletromagnetismo & Óptica',
     title: 'Física em Nível Olímpico',
@@ -72,15 +82,6 @@ export default function LivrosPage() {
             </div>
           </div>
         ))}
-      </div>
-
-      <div className="mt-10 p-6 rounded-xl text-center" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-        <p style={{ color: 'var(--color-muted)', fontSize: 14, fontFamily: 'var(--font-display)' }}>
-          Todos os livros disponíveis também na{' '}
-          <a href="https://www.amazon.com.br/shop/prof.ivanguilhon" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-gold)' }}>Amazon</a>
-          {' '}· Aceitamos{' '}
-          <a href="https://www.nivelolimpico.com.br/post/como-comprar-seus-livros-com-criptomoedas" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-gold)' }}>Bitcoin, Ethereum e Solana</a>
-        </p>
       </div>
     </div>
   )
