@@ -163,9 +163,9 @@ export default function FisicaExperimentalPage() {
           <p style={{ color: 'var(--color-muted)', fontSize: 16, marginBottom: 32 }}>Acesso imediato. Estude antes da próxima fase.</p>
           <div className="p-8 rounded-2xl mb-8" style={{ background: 'var(--color-bg)', border: '1px solid var(--color-border)' }}>
             <p style={{ color: 'var(--color-muted)', fontSize: 14, fontFamily: 'var(--font-display)', marginBottom: 6 }}>Introdução à Física Experimental</p>
-            <p style={{ fontFamily: 'var(--font-display)', fontSize: 13, color: 'var(--color-muted)', textDecoration: 'line-through', marginBottom: 4 }}>De R$ 147</p>
-            <p style={{ fontFamily: 'var(--font-display)', fontSize: 42, fontWeight: 700, color: 'var(--color-text)', lineHeight: 1 }}>R$ 97</p>
-            <p style={{ color: 'var(--color-muted)', fontSize: 13, marginBottom: 28 }}>ou 12x de R$ 9,49 · Via Hotmart</p>
+            <p style={{ fontFamily: 'var(--font-display)', fontSize: 13, color: 'var(--color-muted)', textDecoration: 'line-through', marginBottom: 4 }}>De R$ 247</p>
+            <p style={{ fontFamily: 'var(--font-display)', fontSize: 42, fontWeight: 700, color: 'var(--color-text)', lineHeight: 1 }}>R$ 127</p>
+            <p style={{ color: 'var(--color-muted)', fontSize: 13, marginBottom: 28 }}>em até 12x via Hotmart</p>
             <CtaButton href={HOTMART}>Garantir minha vaga →</CtaButton>
             <div className="mt-6">
               {['5 módulos com aulas detalhadas', 'Exercícios de tratamento de dados', 'Atividades com materiais de baixo custo', 'Professor com experiência em olimpíadas', 'Acesso vitalício + atualizações'].map(b => (

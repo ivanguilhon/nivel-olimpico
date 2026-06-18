@@ -189,11 +189,11 @@ export default function LatexPage() {
 
         <div className="p-8 rounded-2xl mb-8" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
           <p style={{ color: 'var(--color-muted)', fontSize: 14, fontFamily: 'var(--font-display)', marginBottom: 6 }}>LaTeX para Todos</p>
-          <p style={{ fontFamily: 'var(--font-display)', fontSize: 13, color: 'var(--color-muted)', textDecoration: 'line-through', marginBottom: 4 }}>De R$ 197</p>
+          <p style={{ fontFamily: 'var(--font-display)', fontSize: 13, color: 'var(--color-muted)', textDecoration: 'line-through', marginBottom: 4 }}>De R$ 167</p>
           <p style={{ fontFamily: 'var(--font-display)', fontSize: 42, fontWeight: 700, color: 'var(--color-text)', lineHeight: 1 }}>
             R$ 97
           </p>
-          <p style={{ color: 'var(--color-muted)', fontSize: 13, marginBottom: 28 }}>ou 12x de R$ 9,49 · Via Hotmart</p>
+          <p style={{ color: 'var(--color-muted)', fontSize: 13, marginBottom: 28 }}>em até 12x via Hotmart</p>
           <CtaButton href={HOTMART}>Garantir minha vaga →</CtaButton>
           <div className="mt-6">
             {['Acesso vitalício + atualizações', '8 módulos com aulas detalhadas', 'Templates e arquivos prontos para usar', 'Módulo de IA + LaTeX exclusivo', 'Garantia de 7 dias sem perguntas'].map(b => (
