@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
+import Image from 'next/image'
 import { ExternalLink } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 }
 
 const BASE = 'https://ivanguilhon.github.io/PhysSim'
+const WIX = 'https://static.wixstatic.com/media'
 
 const sims = [
   {
@@ -16,7 +17,7 @@ const sims = [
     subtitle: 'Cinemática',
     desc:     'Visualize movimento retilíneo uniforme e uniformemente variado. Controle velocidade inicial, aceleração e tempo — veja posição e velocidade em tempo real.',
     href:     `${BASE}/MRU-MRUV/MRU-MRUV.html`,
-    icon:     '→',
+    img:      `${WIX}/7b20c6_a4897c521ed94f43832e4c087ecca0e4~mv2.png`,
   },
   {
     id:       'lancamento-obliquo',
@@ -24,7 +25,7 @@ const sims = [
     subtitle: 'Cinemática 2D',
     desc:     'Simule projéteis com controle de ângulo, velocidade inicial e gravidade. Observe a trajetória parabólica e o alcance máximo interativamente.',
     href:     `${BASE}/myCannon/MyCannon.html`,
-    icon:     '⌒',
+    img:      `${WIX}/7b20c6_bc2b261171a24ffead7e9c421f1fa541~mv2.png`,
   },
   {
     id:       'campo-eletrico',
@@ -32,7 +33,7 @@ const sims = [
     subtitle: 'Eletrostática',
     desc:     'Distribua cargas pontuais e visualize as linhas de campo elétrico e superfícies equipotenciais em tempo real. Ferramenta essencial para ITA/IME.',
     href:     `${BASE}/eletrostatica/electric_sim.html`,
-    icon:     'E',
+    img:      `${WIX}/8dc56f_2288510e35084ea4ba4bec1c437762dc~mv2.png`,
   },
   {
     id:       'luz-cores',
@@ -40,7 +41,7 @@ const sims = [
     subtitle: 'Óptica / Fotônica',
     desc:     'Explore síntese aditiva (RGB) e subtrativa (CMY) de cores. Misture luzes coloridas e pigmentos e observe os resultados — perfeito para compreender fotônica.',
     href:     `${BASE}/luz-cores/LuzECores.html`,
-    icon:     '◉',
+    img:      `${WIX}/8dc56f_6a9816824dbe4129ad7c4c629a6c0032~mv2.png`,
   },
   {
     id:       'ondas-sonoras',
@@ -48,7 +49,7 @@ const sims = [
     subtitle: 'Ondulatória',
     desc:     'Visualize a superposição de ondas sonoras, batimentos e interferência. Controle frequência, amplitude e fase de múltiplas fontes.',
     href:     `${BASE}/waveSound/waveSound.html`,
-    icon:     '∿',
+    img:      `${WIX}/8dc56f_07f9b31d7e5349acb7b4a6f04cb6f029~mv2.png`,
   },
   {
     id:       'gases-ideais',
@@ -56,7 +57,7 @@ const sims = [
     subtitle: 'Termodinâmica',
     desc:     'Simulação molecular de transformações isotérmicas, isobáricas e adiabáticas. Veja as moléculas e os gráficos p-V simultaneamente.',
     href:     `${BASE}/ideal%20gas/gases_ideais.html`,
-    icon:     '○',
+    img:      `${WIX}/7b20c6_5aa4000d7f5f416d9609d34a7aba3ff5~mv2.png`,
   },
   {
     id:       'poco-infinito',
@@ -64,7 +65,7 @@ const sims = [
     subtitle: 'Física Moderna',
     desc:     'Visualize as funções de onda e níveis de energia de uma partícula em poço infinito. Explore a quantização de energia — conteúdo IPhO avançado.',
     href:     `${BASE}/QuantumWell/infiniteWell.html`,
-    icon:     'ψ',
+    img:      `${WIX}/7b20c6_b6899c6a96b14a16bf7007c41f747992~mv2.png`,
   },
   {
     id:       'poco-finito',
@@ -72,7 +73,7 @@ const sims = [
     subtitle: 'Física Moderna',
     desc:     'Versão com paredes de potencial finito: observe tunelamento quântico e compare com o caso infinito. Estados ligados e espalhamento visualizados.',
     href:     `${BASE}/QuantumWell/finiteWell.html`,
-    icon:     'ψ',
+    img:      `${WIX}/7b20c6_b6899c6a96b14a16bf7007c41f747992~mv2.png`,
   },
 ]
 
@@ -110,11 +111,9 @@ export default function SimulacoesPage() {
           <div key={sim.id} className="group flex flex-col rounded-xl overflow-hidden"
             style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
             {/* Visual header */}
-            <div className="flex items-center justify-center"
-              style={{ height: 100, background: 'var(--color-bg)', borderBottom: '1px solid var(--color-border)' }}>
-              <span style={{ fontSize: 40, color: 'var(--color-gold)', fontFamily: 'var(--font-display)', fontWeight: 700, opacity: 0.85 }}>
-                {sim.icon}
-              </span>
+            <div className="relative overflow-hidden"
+              style={{ height: 160, borderBottom: '1px solid var(--color-border)' }}>
+              <Image src={sim.img} alt={sim.title} fill style={{ objectFit: 'cover' }} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
             </div>
             {/* Content */}
             <div className="p-5 flex flex-col flex-1">
@@ -137,13 +136,20 @@ export default function SimulacoesPage() {
 
       {/* CTA */}
       <div className="mt-12 p-8 rounded-xl text-center" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-        <p style={{ color: 'var(--color-muted)', fontSize: 15, marginBottom: '0.5rem' }}>
-          Tem uma sugestão de simulação? Contribua no repositório:
+        <p style={{ color: 'var(--color-muted)', fontSize: 15, marginBottom: '0.75rem' }}>
+          Tem uma sugestão de simulação?
         </p>
-        <a href="https://github.com/ivanguilhon/PhysSim" target="_blank" rel="noopener noreferrer"
-          style={{ color: 'var(--color-gold)', fontFamily: 'var(--font-display)', fontWeight: 600 }}>
-          github.com/ivanguilhon/PhysSim
-        </a>
+        <div className="flex items-center justify-center gap-4 flex-wrap">
+          <a href="mailto:nivel.olimpico@gmail.com"
+            style={{ color: 'var(--color-gold)', fontFamily: 'var(--font-display)', fontWeight: 600 }}>
+            nivel.olimpico@gmail.com
+          </a>
+          <span style={{ color: 'var(--color-border)' }}>|</span>
+          <a href="/contato"
+            style={{ color: 'var(--color-gold)', fontFamily: 'var(--font-display)', fontWeight: 600 }}>
+            Página de contato
+          </a>
+        </div>
       </div>
     </div>
   )

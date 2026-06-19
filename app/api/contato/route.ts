@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
   try {
     await resend.emails.send({
       from:    'Site Nível Olímpico <contato@nivelolimpico.com.br>',
-      to:      ['ivan@nivelolimpico.com.br'],
+      to:      ['nivel.olimpico@gmail.com'],
       replyTo: email,
       subject: `[Contato] Mensagem de ${nome}`,
       html: `

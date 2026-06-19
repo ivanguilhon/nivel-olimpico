@@ -40,7 +40,7 @@ const stats = [
   { n: '20+', label: 'premiações olímpicas' },
   { n: '4',   label: 'livros publicados' },
   { n: '8',   label: 'simulações interativas' },
-  { n: '2',   label: 'cursos online com acesso por 1 ano' },
+  { n: '2',   label: 'cursos online' },
 ]
 
 export default function Home() {
