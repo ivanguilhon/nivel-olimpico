@@ -221,7 +221,7 @@ export default function Home() {
             <div className="flex-1">
               <p style={{ color: 'var(--color-gold)', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase',
                 fontFamily: 'var(--font-display)', marginBottom: 12 }}>
-                Quem é o professor
+                Conheça o professor
               </p>
               <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 700,
                 color: 'var(--color-text)', lineHeight: 1.15, marginBottom: 20 }}>
@@ -229,11 +229,14 @@ export default function Home() {
               </h2>
               <p style={{ color: 'var(--color-muted)', fontSize: 16, lineHeight: 1.8, marginBottom: 16 }}>
                 Engenheiro Eletrônico pelo ITA (<em>Magna Cum Laude</em>, 2014) e Doutor em Física Atômica e Molecular
-                pelo ITA (2017, aos 25 anos). Professor no Departamento de Física do ITA e coordenador do IYPT Brasil.
+                pelo ITA (2017, aos 25 anos). Aprovado em 1º lugar no concurso para professor do ITA aos 26 anos —
+                onde hoje leciona no Departamento de Física.
               </p>
               <p style={{ color: 'var(--color-muted)', fontSize: 16, lineHeight: 1.8, marginBottom: 28 }}>
-                Aprovado em 1º lugar no concurso para professor do ITA aos 26 anos. Autor de 4 livros e 15 artigos
-                científicos internacionais. Como estudante, conquistou medalha de Prata na IPhO e Ouro na OBF.
+                Autor de 4 livros e 20 artigos científicos internacionais. Coordenador acadêmico do IYPT Brasil e da
+                Olimpíada Ibero-Americana de Física; chefe de delegação do Brasil na IPhO. Como estudante: Ouro na OBF,
+                Prata na IPhO, 1º lugar no Prêmio IFT de Jovens Físicos e aprovado no IME em 2º lugar nacional ainda
+                no 2º ano do ensino médio.
               </p>
 
               {/* Credentials grid */}
@@ -242,7 +245,7 @@ export default function Home() {
                   { n: '🥈', label: 'Prata IPhO' },
                   { n: '🥇', label: 'Ouro OBF' },
                   { n: '4',  label: 'Livros publicados' },
-                  { n: '15', label: 'Artigos internacionais' },
+                  { n: '20', label: 'Artigos internacionais' },
                 ].map(({ n, label }) => (
                   <div key={label} className="text-center p-3 rounded-lg"
                     style={{ background: 'var(--color-bg)', border: '1px solid var(--color-border)' }}>
