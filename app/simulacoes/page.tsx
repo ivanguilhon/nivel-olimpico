@@ -67,14 +67,6 @@ const sims = [
     href:     `${BASE}/QuantumWell/infiniteWell.html`,
     img:      `${WIX}/7b20c6_b6899c6a96b14a16bf7007c41f747992~mv2.png`,
   },
-  {
-    id:       'poco-finito',
-    title:    'Poço Quântico Finito',
-    subtitle: 'Física Moderna',
-    desc:     'Versão com paredes de potencial finito: observe tunelamento quântico e compare com o caso infinito. Estados ligados e espalhamento visualizados.',
-    href:     `${BASE}/QuantumWell/finiteWell.html`,
-    img:      `${WIX}/7b20c6_b6899c6a96b14a16bf7007c41f747992~mv2.png`,
-  },
 ]
 
 const topicos = ['Cinemática', 'Cinemática 2D', 'Eletrostática', 'Óptica / Fotônica', 'Ondulatória', 'Termodinâmica', 'Física Moderna']
