@@ -229,13 +229,15 @@ export default function Home() {
               </h2>
               <p style={{ color: 'var(--color-muted)', fontSize: 16, lineHeight: 1.8, marginBottom: 16 }}>
                 Engenheiro Eletrônico pelo ITA (<em>Magna Cum Laude</em>, 2014) e Doutor em Física Atômica e Molecular
-                pelo ITA (2017, aos 25 anos). Aprovado em 1º lugar no concurso para professor do ITA aos 26 anos —
-                onde hoje leciona no Departamento de Física.
+                pelo ITA (2017, aos 25 anos). Aprovado em 1º lugar no concurso para professor do ITA aos 26 anos.
               </p>
               <p style={{ color: 'var(--color-muted)', fontSize: 16, lineHeight: 1.8, marginBottom: 28 }}>
-                Autor de 4 livros e 20 artigos científicos internacionais. Coordenador acadêmico do IYPT Brasil e da
-                Olimpíada Ibero-Americana de Física; chefe de delegação do Brasil na IPhO. Como estudante: Ouro na OBF,
-                Prata na IPhO, 1º lugar no Prêmio IFT de Jovens Físicos e aprovado no IME em 2º lugar nacional ainda
+                Autor de 4 livros e 20 artigos científicos internacionais. O professor Ivan já foi coordenador acadêmico do IYPT Brasil, coordenador acadêmico da
+                Olimpíada Ibero-Americana de Física e líder da delegação que representou o Brasil em diferentes olimpíadas internacionais. 
+                </p>
+              <p style={{ color: 'var(--color-muted)', fontSize: 16, lineHeight: 1.8, marginBottom: 28 }}>              
+                Como estudante conquistou mais de 20 premidações acadêmicas, como: Medalha de ouro na OBF,
+                Medalha de prata na IPhO, Medalha de bronze na IMC,  1º lugar no Prêmio IFT de Jovens Físicos e aprovação no IME em 12º lugar nacional ainda
                 no 2º ano do ensino médio.
               </p>
 
