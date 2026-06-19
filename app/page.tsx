@@ -63,7 +63,7 @@ export default function Home() {
             <em style={{ color: 'var(--color-gold)', fontStyle: 'italic' }}>Nível Olímpico</em>
           </h1>
           <p style={{ color: 'var(--color-muted)', fontSize: 18, maxWidth: 500, lineHeight: 1.7, marginBottom: '2rem' }}>
-            Preparação completa para OBF, IPhO, ITA e IME — com cursos, livros e simulações.
+            Eleve o seu nível de física. Conheça nossos livros e cursos voltados para estudos, concursos de alto nível e olimpíadas científicas.
           </p>
           <div className="flex flex-wrap gap-4">
             <CtaButton href="/cursos/latex">Ver cursos →</CtaButton>
