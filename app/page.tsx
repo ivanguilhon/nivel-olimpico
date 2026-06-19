@@ -208,13 +208,6 @@ export default function Home() {
                 <img src={IMG.ivanMedalha} alt="Prof. Dr. Ivan Guilhon"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 15%' }} />
               </div>
-              {/* Medal badge */}
-              <div style={{ position: 'absolute', bottom: -16, right: -16, background: 'var(--color-gold)',
-                borderRadius: 12, padding: '10px 16px', boxShadow: '0 8px 24px rgba(228,173,65,0.4)' }}>
-                <p style={{ fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 700, color: '#000', letterSpacing: '0.05em' }}>
-                  🥈 IPhO · 🥇 OBF
-                </p>
-              </div>
             </div>
 
             {/* Content */}
@@ -232,11 +225,11 @@ export default function Home() {
                 pelo ITA (2017, aos 25 anos). Aprovado em 1º lugar no concurso para professor do ITA aos 26 anos.
               </p>
               <p style={{ color: 'var(--color-muted)', fontSize: 16, lineHeight: 1.8, marginBottom: 28 }}>
-                Autor de 4 livros e 20 artigos científicos internacionais. O professor Ivan já foi coordenador acadêmico do IYPT Brasil, coordenador acadêmico da
+                Autor de 4 livros e 25 artigos científicos internacionais. O professor Ivan já foi coordenador acadêmico do IYPT Brasil, coordenador acadêmico da
                 Olimpíada Ibero-Americana de Física e líder da delegação que representou o Brasil em diferentes olimpíadas internacionais. 
                 </p>
               <p style={{ color: 'var(--color-muted)', fontSize: 16, lineHeight: 1.8, marginBottom: 28 }}>              
-                Como estudante conquistou mais de 20 premidações acadêmicas, como: Medalha de ouro na OBF,
+                Como estudante conquistou mais de 20 premiações acadêmicas, como: Medalha de ouro na OBF,
                 Medalha de prata na IPhO, Medalha de bronze na IMC,  1º lugar no Prêmio IFT de Jovens Físicos e aprovação no IME em 12º lugar nacional ainda
                 no 2º ano do ensino médio.
               </p>
@@ -244,10 +237,10 @@ export default function Home() {
               {/* Credentials grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
                 {[
-                  { n: '🥈', label: 'Prata IPhO' },
-                  { n: '🥇', label: 'Ouro OBF' },
+                  { n: '🥈', label: 'Medalhista internacional' },
+                  { n: '🥇', label: 'Especialista em olimpíadas científicas' },
                   { n: '4',  label: 'Livros publicados' },
-                  { n: '20', label: 'Artigos internacionais' },
+                  { n: '25', label: 'Artigos internacionais' },
                 ].map(({ n, label }) => (
                   <div key={label} className="text-center p-3 rounded-lg"
                     style={{ background: 'var(--color-bg)', border: '1px solid var(--color-border)' }}>
@@ -262,11 +255,6 @@ export default function Home() {
                   style={{ padding: '10px 20px', borderRadius: 8, border: '1px solid var(--color-border)',
                     color: 'var(--color-muted)', fontFamily: 'var(--font-display)', fontSize: 14, textDecoration: 'none' }}>
                   Instagram
-                </a>
-                <a href="https://wa.me/5512988616486" target="_blank" rel="noopener noreferrer"
-                  style={{ padding: '10px 20px', borderRadius: 8, background: 'var(--color-gold)',
-                    color: '#000', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 14, textDecoration: 'none' }}>
-                  WhatsApp
                 </a>
               </div>
             </div>
