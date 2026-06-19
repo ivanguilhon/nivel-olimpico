@@ -6,7 +6,7 @@ import { IMG } from '@/lib/images'
 
 export const metadata: Metadata = {
   title: 'LaTeX para Todos — Domine a escrita acadêmica e profissional',
-  description: 'Aprenda LaTeX do zero: documentos, equações, apresentações e IA. 8 módulos, acesso vitalício. Por Prof. Dr. Ivan Guilhon.',
+  description: 'Aprenda LaTeX do zero: documentos, equações, apresentações e IA. 8 módulos. Por Prof. Dr. Ivan Guilhon.',
 }
 
 const HOTMART = 'https://pay.hotmart.com/M89748555U'
@@ -23,9 +23,9 @@ const modules = [
 ]
 
 const testimonials = [
-  { name: 'Ana Clara M.',    role: 'Mestranda em Física — USP',          text: 'Minha dissertação ficou pronta 3x mais rápido. O módulo de BibTeX sozinho já valeu o curso.' },
-  { name: 'Lucas F.',        role: 'Candidato ITA 2024',                  text: 'Aprendi a escrever relatórios de física experimental com qualidade profissional. O professor explica de forma extremamente clara.' },
-  { name: 'Profa. Beatriz',  role: 'Docente universitária — SP',          text: 'Finalmente um curso que vai além do básico. O módulo de IA + LaTeX é o diferencial que eu precisava.' },
+  { name: 'Thomas Mendes',    role: 'Medicina',          text: 'Durante a graduação, alguns colegas me falaram pra usar LaTex. Realmente os documentos não têm nem comparação, com nível muito mais profissional. ' },
+  { name: 'Antonio Aido',        role: 'Professor universitário',                  text: 'Comprei o curso e gostei.' },
+ 
 ]
 
 const faqs = [
