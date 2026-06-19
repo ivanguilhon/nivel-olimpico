@@ -19,9 +19,8 @@ const modules = [
 ]
 
 const testimonials = [
-  { name: 'Rafael S.',   role: 'Medalha OBF 2024 — Fase 3',              text: 'A prova experimental foi a que mais diferenciou os candidatos. Esse curso me deu a base que ninguém ensina em sala de aula.' },
-  { name: 'Camila T.',   role: 'Estudante — IPhO 2024',                   text: 'Propagação de incertezas era um terror para mim. Depois dos módulos II e III, virou rotina. Indispensável para a IPhO.' },
-  { name: 'Prof. André', role: 'Treinador de equipe olímpica — MG',       text: 'Recomendo para todos os meus alunos antes de qualquer prova experimental. O conteúdo é exatamente o que as provas cobram.' },
+  { name: 'Carlos Eduardo',   role: 'Fisicadu',              text: 'O curso é bem completo, com assuntos que eu inclusive não cheguei a ver no meu curso de graduação. Ótima didática, com muitos exemplos e exercícios. Fiquei fã do curso!' },
+  { name: 'Felipe Brandão',   role: 'Estudante — IPhO 24 & 25',                   text: 'Agradeço por ter tido treinamento experimental com o prof. Ivan. Suas aulas me ajudaram muito na conquista da medalha de prata na IPhO.' },
 ]
 
 const faqs = [
