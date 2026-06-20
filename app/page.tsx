@@ -66,12 +66,17 @@ export default function Home() {
             Eleve o seu nível de física. Conheça nossos livros e cursos voltados para estudos, concursos de alto nível e olimpíadas científicas.
           </p>
           <div className="flex flex-wrap gap-4">
-            <CtaButton href="/cursos/latex">Ver cursos →</CtaButton>
-            <Link href="/simulacoes"
+            <CtaButton href="https://militares.estrategia.com/concursos/cursos/fisica-olimpica">Turmas Olímpicas →</CtaButton>
+            <Link href="/livros"
               className="flex items-center gap-2 px-5 py-3 rounded-lg font-semibold text-sm"
               style={{ border: '1px solid var(--color-border)', color: 'var(--color-text)', fontFamily: 'var(--font-display)' }}>
-              Simulações grátis
+              Ver livros
             </Link>
+            <a href="https://www.nivelolimpico.com.br/cursos/fisica-experimental" target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-2 px-5 py-3 rounded-lg font-semibold text-sm"
+              style={{ border: '1px solid var(--color-border)', color: 'var(--color-text)', fontFamily: 'var(--font-display)' }}>
+              Física Experimental
+            </a>
           </div>
         </div>
       </section>
