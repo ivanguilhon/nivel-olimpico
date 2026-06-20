@@ -34,13 +34,33 @@ const courses = [
     color: 'rgba(228,173,65,0.04)',
     border: 'var(--color-border)',
   },
+  {
+    tag: 'ESTRATÉGIA MILITARES',
+    title: 'Física Olímpica',
+    desc: 'Turma completa de preparação olímpica para ensino fundamental e médio. Teoria, listas e resolução de provas das principais olimpíadas científicas.',
+    benefits: ['Ensino fundamental e médio', 'Material e videoaulas na plataforma Estratégia', 'Acompanhamento contínuo do professor Ivan'],
+    href: 'https://militares.estrategia.com/concursos/cursos/fisica-olimpica',
+    external: true,
+    color: 'rgba(228,173,65,0.04)',
+    border: 'var(--color-border)',
+  },
+  {
+    tag: 'ESTRATÉGIA MILITARES',
+    title: 'Ciências Mirim',
+    desc: 'Introdução lúdica às ciências para os pequenos, despertando o interesse científico desde cedo — o primeiro passo antes das olimpíadas.',
+    benefits: ['Turma mirim, linguagem acessível', 'Material e videoaulas na plataforma Estratégia', 'Base para futuras olimpíadas científicas'],
+    href: 'https://militares.estrategia.com/concursos/cursos/ciencias-mirim',
+    external: true,
+    color: 'rgba(228,173,65,0.04)',
+    border: 'var(--color-border)',
+  },
 ]
 
 const stats = [
   { n: '20+', label: 'premiações olímpicas' },
   { n: '4',   label: 'livros publicados' },
   { n: '8',   label: 'simulações interativas' },
-  { n: '2',   label: 'cursos online' },
+  { n: '4',   label: 'cursos online' },
 ]
 
 export default function Home() {
@@ -103,7 +123,7 @@ export default function Home() {
             Ver todos →
           </Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {courses.map(c => (
             <div key={c.title} className="p-8 rounded-2xl flex flex-col"
               style={{ background: c.color, border: `1px solid ${c.border}` }}>
@@ -112,10 +132,12 @@ export default function Home() {
                   padding: '3px 12px', fontSize: 10, color: 'var(--color-gold)', fontFamily: 'var(--font-display)', letterSpacing: '0.12em' }}>
                   {c.tag}
                 </span>
-                <div className="text-right">
-                  <p style={{ color: 'var(--color-muted)', fontSize: 12, textDecoration: 'line-through' }}>{c.from}</p>
-                  <p style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 700, color: 'var(--color-text)' }}>{c.price}</p>
-                </div>
+                {!c.external && (
+                  <div className="text-right">
+                    <p style={{ color: 'var(--color-muted)', fontSize: 12, textDecoration: 'line-through' }}>{c.from}</p>
+                    <p style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 700, color: 'var(--color-text)' }}>{c.price}</p>
+                  </div>
+                )}
               </div>
               <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 700, color: 'var(--color-text)', marginBottom: '0.75rem' }}>{c.title}</h3>
               <p style={{ color: 'var(--color-muted)', fontSize: 15, lineHeight: 1.6, marginBottom: '1.25rem', flex: 1 }}>{c.desc}</p>
@@ -128,18 +150,29 @@ export default function Home() {
                 ))}
               </ul>
               <div className="flex gap-3 flex-wrap">
-                <a href={c.hotmart} target="_blank" rel="noopener noreferrer"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '11px 22px', borderRadius: 8,
-                    background: 'var(--color-gold)', color: '#000', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 14,
-                    textDecoration: 'none', boxShadow: '0 2px 12px rgba(228,173,65,0.2)' }}>
-                  Comprar agora
-                </a>
-                <Link href={c.href}
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '11px 18px', borderRadius: 8,
-                    border: '1px solid var(--color-border)', color: 'var(--color-muted)', fontFamily: 'var(--font-display)', fontSize: 14,
-                    textDecoration: 'none' }}>
-                  Ver detalhes
-                </Link>
+                {c.external ? (
+                  <a href={c.href} target="_blank" rel="noopener noreferrer"
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '11px 22px', borderRadius: 8,
+                      background: 'var(--color-gold)', color: '#000', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 14,
+                      textDecoration: 'none', boxShadow: '0 2px 12px rgba(228,173,65,0.2)' }}>
+                    Conhecer no Estratégia →
+                  </a>
+                ) : (
+                  <>
+                    <a href={c.hotmart} target="_blank" rel="noopener noreferrer"
+                      style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '11px 22px', borderRadius: 8,
+                        background: 'var(--color-gold)', color: '#000', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 14,
+                        textDecoration: 'none', boxShadow: '0 2px 12px rgba(228,173,65,0.2)' }}>
+                      Comprar agora
+                    </a>
+                    <Link href={c.href}
+                      style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '11px 18px', borderRadius: 8,
+                        border: '1px solid var(--color-border)', color: 'var(--color-muted)', fontFamily: 'var(--font-display)', fontSize: 14,
+                        textDecoration: 'none' }}>
+                      Ver detalhes
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           ))}
@@ -279,9 +312,11 @@ export default function Home() {
           <div className="flex flex-wrap justify-center gap-4">
             <CtaButton href="/cursos/latex">LaTeX para Todos →</CtaButton>
             <CtaButton href="/cursos/fisica-experimental">Física Experimental →</CtaButton>
+            <CtaButton href="https://militares.estrategia.com/concursos/cursos/fisica-olimpica">Física Olímpica →</CtaButton>
+            <CtaButton href="https://militares.estrategia.com/concursos/cursos/ciencias-mirim">Ciências Mirim →</CtaButton>
           </div>
           <p style={{ color: 'var(--color-muted)', fontSize: 13, marginTop: 16 }}>
-            Ambos com garantia de 7 dias · Acesso vitalício · 12x sem juros
+            LaTeX e Física Experimental: garantia de 7 dias · acesso por 1 ano · 12x sem juros
           </p>
         </div>
       </section>
