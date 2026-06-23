@@ -275,8 +275,8 @@ export default function Home() {
               {/* Credentials grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
                 {[
-                  { n: '🥈', label: 'Medalhista internacional' },
                   { n: '🥇', label: 'Especialista em olimpíadas científicas' },
+                  { n: '🥈', label: 'Medalhista internacional' },                  
                   { n: '4',  label: 'Livros publicados' },
                   { n: '25', label: 'Artigos internacionais' },
                 ].map(({ n, label }) => (
