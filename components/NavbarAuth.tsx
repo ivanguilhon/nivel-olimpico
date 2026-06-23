@@ -7,6 +7,7 @@ export default function NavbarAuth() {
   const [user, setUser]   = useState<any>(null)
   const [ready, setReady] = useState(false)
   const [aura, setAura]   = useState<{ balance: number; badge: string | null } | null>(null)
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
 
   useEffect(() => {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -26,9 +27,9 @@ export default function NavbarAuth() {
         setUser(data.user ?? null)
         setReady(true)
         if (data.user) {
-          supabase.from('profiles').select('aura_balance, aura_badge').eq('id', data.user.id).single()
+          supabase.from('profiles').select('aura_balance, aura_badge, avatar_url').eq('id', data.user.id).single()
             .then(({ data: p }: { data: any }) => {
-              if (p) setAura({ balance: p.aura_balance, badge: p.aura_badge })
+              if (p) { setAura({ balance: p.aura_balance, badge: p.aura_badge }); setAvatarUrl(p.avatar_url ?? null) }
             })
         }
       })
@@ -49,9 +50,15 @@ export default function NavbarAuth() {
 
   if (user) return (
     <div className="flex items-center gap-2 ml-3">
-      <div className="flex items-center gap-2 px-3 py-2 rounded-lg"
-        style={{ background: 'var(--color-surface2)', border: '1px solid var(--color-border)' }}>
-        <User size={14} style={{ color: 'var(--color-muted)' }} />
+      <Link href="/perfil" className="flex items-center gap-2 px-3 py-2 rounded-lg"
+        style={{ background: 'var(--color-surface2)', border: '1px solid var(--color-border)', textDecoration: 'none' }}
+        title="Meu perfil">
+        {user.user_metadata?.avatar_url || avatarUrl ? (
+          <img src={avatarUrl ?? user.user_metadata?.avatar_url} alt="Avatar"
+            style={{ width: 18, height: 18, borderRadius: '50%', objectFit: 'cover' }} />
+        ) : (
+          <User size={14} style={{ color: 'var(--color-muted)' }} />
+        )}
         <span style={{ color: 'var(--color-muted)', fontSize: 12, fontFamily: 'var(--font-display)',
           maxWidth: 100, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {user.user_metadata?.full_name?.split(' ')[0] ?? user.email?.split('@')[0]}
@@ -62,7 +69,7 @@ export default function NavbarAuth() {
             {aura.badge && badgeEmoji[aura.badge]} {aura.balance}
           </span>
         )}
-      </div>
+      </Link>
       <form action="/auth/signout" method="POST">
         <button type="submit" title="Sair"
           style={{ background: 'none', border: '1px solid var(--color-nav-border)', borderRadius: 8,

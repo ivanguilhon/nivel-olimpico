@@ -1,9 +1,11 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import MathText from '@/components/MathText'
-import { ChevronUp, ChevronDown, CheckCircle, Eye, Edit3, AlertCircle } from 'lucide-react'
+import QuestionForm from '@/components/QuestionForm'
+import { ChevronUp, ChevronDown, CheckCircle, Eye, Edit3, AlertCircle, Pencil } from 'lucide-react'
 
 interface VoteButtonsProps {
   id: string
@@ -181,6 +183,8 @@ export default function QuestionInteractions({ question, answers: initialAnswers
   const supabase = createClient()
   const [answers, setAnswers] = useState(initialAnswers)
   const [user, setUser]       = useState<any>(null)
+  const [isEditing, setIsEditing] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }: { data: any }) => setUser(data.user))
@@ -291,13 +295,41 @@ export default function QuestionInteractions({ question, answers: initialAnswers
       <div className="flex gap-5 mb-10">
         <VoteButtons id={question.id} type="question" initialCount={question.vote_count} />
         <div className="flex-1 min-w-0">
-          <div className="p-6 rounded-xl" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-            <MathText text={question.body} />
-            {question.image_url && (
-              <img src={question.image_url} alt="Imagem da pergunta"
-                style={{ maxWidth: '100%', borderRadius: 8, marginTop: 16, border: '1px solid var(--color-border)' }} />
-            )}
-          </div>
+          {isEditing ? (
+            <div className="p-6 rounded-xl" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 16, fontWeight: 700, color: 'var(--color-text)', marginBottom: 16 }}>
+                Editar pergunta
+              </h3>
+              <QuestionForm
+                mode="edit"
+                questionId={question.id}
+                initialTitle={question.title}
+                initialBody={question.body}
+                initialImageUrl={question.image_url}
+                initialTagIds={(question.question_tags ?? []).map((qt: any) => qt.tags?.id).filter(Boolean)}
+                onCancel={() => setIsEditing(false)}
+                onSaved={() => { setIsEditing(false); router.refresh() }}
+              />
+            </div>
+          ) : (
+            <div className="p-6 rounded-xl" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
+              {isQuestionAuthor && (
+                <div className="flex justify-end mb-3">
+                  <button onClick={() => setIsEditing(true)}
+                    className="flex items-center gap-1 text-xs px-3 py-1 rounded"
+                    style={{ background: 'var(--color-surface2)', border: '1px solid var(--color-border)',
+                      color: 'var(--color-muted)', fontFamily: 'var(--font-display)', cursor: 'pointer' }}>
+                    <Pencil size={12} /> Editar
+                  </button>
+                </div>
+              )}
+              <MathText text={question.body} />
+              {question.image_url && (
+                <img src={question.image_url} alt="Imagem da pergunta"
+                  style={{ maxWidth: '100%', borderRadius: 8, marginTop: 16, border: '1px solid var(--color-border)' }} />
+              )}
+            </div>
+          )}
         </div>
       </div>
 
