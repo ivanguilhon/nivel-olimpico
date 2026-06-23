@@ -14,7 +14,7 @@ const courses = [
     tag: 'MAIS VENDIDO',
     title: 'LaTeX para Todos',
     desc: 'Do zero ao avançado: documentos, equações, apresentações e IA. Acaba com as horas perdidas no Word.',
-    benefits: ['8 módulos, zero instalação', 'Módulo exclusivo de IA + LaTeX', 'Acesso por 1 ano + atualizações'],
+    benefits: ['8 módulos, zero instalação', 'Gere documentos com qualidade superior ao Word', 'Módulo exclusivo de IA + LaTeX', 'Geração de documentos automáticos'],
     price: 'R$ 97',
     from: 'R$ 167',
     href: '/cursos/latex',
