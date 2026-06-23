@@ -19,8 +19,9 @@ const modules = [
 ]
 
 const testimonials = [
-  { name: 'Carlos Eduardo',   role: 'Fisicadu',              text: 'O curso é bem completo, com assuntos que eu inclusive não cheguei a ver no meu curso de graduação. Ótima didática, com muitos exemplos e exercícios. Fiquei fã do curso!' },
-  { name: 'Felipe Brandão',   role: 'Estudante — IPhO 24 & 25',                   text: 'Agradeço por ter tido treinamento experimental com o prof. Ivan. Suas aulas me ajudaram muito na conquista da medalha de prata na IPhO.' },
+  { name: 'Carlos Eduardo',   role: 'Fisicadu',                  text: 'O curso é bem completo, com assuntos que eu inclusive não cheguei a ver no meu curso de graduação. Ótima didática, com muitos exemplos e exercícios. Fiquei fã do curso!' },
+  { name: 'Felipe Brandão',   role: 'Estudante — IPhO 24 & 25', text: 'Agradeço por ter tido treinamento experimental com o prof. Ivan. Suas aulas me ajudaram muito na conquista da medalha de prata na IPhO.' },
+  { name: 'Heitor Marques',   role: 'Estudante',                 text: 'O Curso de Introdução à Física Experimental me ajudou muito a desenvolver de forma eficaz meus conhecimentos de física, permitindo que eu realizasse provas como a OBF com um nível de preparação muito superior. A didática foi o que me deixou mais impressionado, um conteúdo difícil, porém muito bem explicado.' },
 ]
 
 const faqs = [
