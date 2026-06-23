@@ -89,7 +89,7 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
       </div>
 
       {/* Interactive content (voting, body, answers, form) */}
-      <QuestionInteractions question={question} answers={answers} timeAgo={timeAgo} />
+      <QuestionInteractions question={question} answers={answers} />
     </div>
   )
 }

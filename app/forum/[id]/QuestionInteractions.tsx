@@ -163,10 +163,20 @@ function AnswerForm({ questionId, onSubmitted }: AnswerFormProps) {
   )
 }
 
-export default function QuestionInteractions({ question, answers: initialAnswers, timeAgo }: {
+function timeAgo(date: string) {
+  const diff = Date.now() - new Date(date).getTime()
+  const mins = Math.floor(diff / 60000)
+  if (mins < 60)  return `${mins}min atrás`
+  const hrs = Math.floor(mins / 60)
+  if (hrs < 24)   return `${hrs}h atrás`
+  const days = Math.floor(hrs / 24)
+  if (days < 30)  return `${days}d atrás`
+  return new Date(date).toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' })
+}
+
+export default function QuestionInteractions({ question, answers: initialAnswers }: {
   question: any
   answers: any[]
-  timeAgo: (date: string) => string
 }) {
   const supabase = createClient()
   const [answers, setAnswers] = useState(initialAnswers)
