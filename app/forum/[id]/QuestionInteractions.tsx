@@ -205,6 +205,10 @@ export default function QuestionInteractions({ question, answers: initialAnswers
         <div className="flex-1 min-w-0">
           <div className="p-6 rounded-xl" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
             <MathText text={question.body} />
+            {question.image_url && (
+              <img src={question.image_url} alt="Imagem da pergunta"
+                style={{ maxWidth: '100%', borderRadius: 8, marginTop: 16, border: '1px solid var(--color-border)' }} />
+            )}
           </div>
         </div>
       </div>
