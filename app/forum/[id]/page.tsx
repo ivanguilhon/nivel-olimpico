@@ -10,7 +10,7 @@ async function getQuestion(id: string) {
   const supabase = await createClient()
   const { data, error } = await supabase
     .from('questions')
-    .select(`id, title, body, image_url, vote_count, view_count, is_solved, is_pinned, created_at, author_id, author:profiles(id, display_name), question_tags(tags(id, name, color, category)), answers(id, body, vote_count, is_accepted, created_at, author_id, author:profiles(id, display_name))`)
+    .select(`id, title, body, image_url, vote_count, view_count, is_solved, is_pinned, bounty_amount, bounty_deadline, bounty_awarded, created_at, author_id, author:profiles(id, display_name), question_tags(tags(id, name, color, category)), answers(id, body, vote_count, is_accepted, created_at, author_id, author:profiles(id, display_name))`)
     .eq('id', id)
     .single() as any
 

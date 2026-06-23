@@ -190,15 +190,103 @@ export default function QuestionInteractions({ question, answers: initialAnswers
     setAnswers(prev => [...prev, answer])
   }
 
+  const [bountyMsg, setBountyMsg] = useState<string | null>(null)
+  const [bountyAmount, setBountyAmount] = useState(question.bounty_amount || 0)
+  const [showBountyForm, setShowBountyForm] = useState(false)
+  const [offeringBounty, setOfferingBounty] = useState(false)
+  const [bountyInput, setBountyInput] = useState('50')
+
+  const offerBounty = async () => {
+    const amount = parseInt(bountyInput, 10)
+    if (!amount || amount <= 0) { setBountyMsg('Informe um valor válido de aura.'); return }
+    setOfferingBounty(true)
+    const { data, error } = await supabase.rpc('offer_bounty', { p_question_id: question.id, p_amount: amount })
+    setOfferingBounty(false)
+    if (error || !data?.success) {
+      setBountyMsg(data?.error ?? 'Erro ao oferecer recompensa.')
+      return
+    }
+    setBountyAmount(amount)
+    setShowBountyForm(false)
+    setBountyMsg(`Recompensa de ${amount} de aura oferecida! Vale por 14 dias.`)
+  }
+
   const acceptAnswer = async (answerId: string) => {
-    await supabase.from('answers').update({ is_accepted: true }).eq('id', answerId)
+    const { data, error } = await supabase.rpc('accept_answer_with_bounty', { p_answer_id: answerId })
+    if (error || !data?.success) {
+      setBountyMsg(data?.error ?? 'Erro ao aceitar resposta.')
+      return
+    }
     setAnswers(prev => prev.map(a => ({ ...a, is_accepted: a.id === answerId })))
+    if (data.bounty_paid > 0) {
+      setBountyMsg(`Recompensa de ${data.bounty_paid} de aura paga ao autor da resposta!`)
+    }
   }
 
   const isQuestionAuthor = user?.id === question.author_id
 
   return (
     <>
+      {bountyMsg && (
+        <div className="mb-6 p-3 rounded-lg flex items-center justify-between gap-3"
+          style={{ background: 'rgba(228,173,65,0.1)', border: '1px solid rgba(228,173,65,0.3)' }}>
+          <p style={{ color: 'var(--color-gold)', fontSize: 13, fontFamily: 'var(--font-display)' }}>{bountyMsg}</p>
+          <button onClick={() => setBountyMsg(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-muted)' }}>×</button>
+        </div>
+      )}
+
+      {bountyAmount > 0 && (
+        <div className="mb-6 p-4 rounded-xl flex items-center gap-3"
+          style={{ background: 'linear-gradient(135deg, rgba(228,173,65,0.15), rgba(228,173,65,0.05))',
+            border: '1px solid rgba(228,173,65,0.35)' }}>
+          <span style={{ fontSize: 28 }}>💰</span>
+          <div>
+            <p style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 16, color: 'var(--color-gold)' }}>
+              Recompensa: {bountyAmount} de aura
+            </p>
+            <p style={{ color: 'var(--color-muted)', fontSize: 12 }}>
+              {question.bounty_awarded
+                ? 'Recompensa já paga.'
+                : question.bounty_deadline
+                  ? `Quem tiver a resposta aceita até ${new Date(question.bounty_deadline).toLocaleDateString('pt-BR')} leva a recompensa.`
+                  : 'Aguardando aceite do autor.'}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {isQuestionAuthor && bountyAmount === 0 && !question.is_solved && (
+        <div className="mb-6">
+          {showBountyForm ? (
+            <div className="flex items-center gap-3 p-4 rounded-xl" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
+              <span style={{ fontSize: 13, color: 'var(--color-muted)' }}>Oferecer</span>
+              <input type="number" min={1} value={bountyInput} onChange={e => setBountyInput(e.target.value)}
+                style={{ width: 80, background: 'var(--color-surface2)', border: '1px solid var(--color-border)',
+                  borderRadius: 6, padding: '6px 10px', color: 'var(--color-text)', fontSize: 14 }} />
+              <span style={{ fontSize: 13, color: 'var(--color-muted)' }}>de aura por uma resposta aceita</span>
+              <button onClick={offerBounty} disabled={offeringBounty}
+                style={{ padding: '7px 16px', borderRadius: 6, border: 'none', background: 'var(--color-gold)',
+                  color: '#000', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
+                {offeringBounty ? 'Enviando...' : 'Confirmar'}
+              </button>
+              <button onClick={() => setShowBountyForm(false)}
+                style={{ padding: '7px 12px', borderRadius: 6, border: '1px solid var(--color-border)', background: 'none',
+                  color: 'var(--color-muted)', fontSize: 13, cursor: 'pointer' }}>
+                Cancelar
+              </button>
+            </div>
+          ) : (
+            <button onClick={() => setShowBountyForm(true)}
+              className="flex items-center gap-2"
+              style={{ padding: '8px 16px', borderRadius: 8, border: '1px dashed rgba(228,173,65,0.4)',
+                background: 'rgba(228,173,65,0.06)', color: 'var(--color-gold)', fontSize: 13,
+                fontFamily: 'var(--font-display)', cursor: 'pointer' }}>
+              💰 Oferecer recompensa em aura
+            </button>
+          )}
+        </div>
+      )}
+
       {/* Question body */}
       <div className="flex gap-5 mb-10">
         <VoteButtons id={question.id} type="question" initialCount={question.vote_count} />

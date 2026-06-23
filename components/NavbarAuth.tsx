@@ -6,6 +6,7 @@ import { LogOut, User } from 'lucide-react'
 export default function NavbarAuth() {
   const [user, setUser]   = useState<any>(null)
   const [ready, setReady] = useState(false)
+  const [aura, setAura]   = useState<{ balance: number; badge: string | null } | null>(null)
 
   useEffect(() => {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -24,6 +25,12 @@ export default function NavbarAuth() {
       supabase.auth.getUser().then(({ data }: { data: any }) => {
         setUser(data.user ?? null)
         setReady(true)
+        if (data.user) {
+          supabase.from('profiles').select('aura_balance, aura_badge').eq('id', data.user.id).single()
+            .then(({ data: p }: { data: any }) => {
+              if (p) setAura({ balance: p.aura_balance, badge: p.aura_badge })
+            })
+        }
       })
 
       const { data: { subscription } } = supabase.auth.onAuthStateChange((_: any, session: any) => {
@@ -32,6 +39,8 @@ export default function NavbarAuth() {
       return () => subscription.unsubscribe()
     }).catch(() => setReady(true))
   }, [])
+
+  const badgeEmoji: Record<string, string> = { gold: '🥇', silver: '🥈', bronze: '🥉' }
 
   // While loading, show a neutral placeholder
   if (!ready) return (
@@ -47,6 +56,12 @@ export default function NavbarAuth() {
           maxWidth: 100, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {user.user_metadata?.full_name?.split(' ')[0] ?? user.email?.split('@')[0]}
         </span>
+        {aura && (
+          <span title={aura.badge ? `Aura de ${aura.badge === 'gold' ? 'Ouro' : aura.badge === 'silver' ? 'Prata' : 'Bronze'}` : 'Aura'}
+            style={{ display: 'flex', alignItems: 'center', gap: 3, color: 'var(--color-gold)', fontSize: 12, fontFamily: 'var(--font-display)', fontWeight: 700 }}>
+            {aura.badge && badgeEmoji[aura.badge]} {aura.balance}
+          </span>
+        )}
       </div>
       <form action="/auth/signout" method="POST">
         <button type="submit" title="Sair"

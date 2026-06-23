@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic'
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { Trash2, Pin, PinOff, Ban, ShieldCheck, AlertCircle, ExternalLink } from 'lucide-react'
+import { Trash2, Pin, PinOff, Ban, ShieldCheck, AlertCircle, ExternalLink, Sparkles } from 'lucide-react'
 
 interface Question {
   id: string; title: string; is_pinned: boolean; is_solved: boolean
@@ -13,6 +13,7 @@ interface Question {
 }
 interface Profile {
   id: string; display_name: string; role: string; is_banned: boolean
+  aura_balance?: number; aura_badge?: string | null
 }
 
 export default function ModerarPage() {
@@ -21,8 +22,10 @@ export default function ModerarPage() {
   const [allowed, setAllowed]   = useState(false)
   const [questions, setQuestions] = useState<Question[]>([])
   const [profiles, setProfiles]   = useState<Profile[]>([])
-  const [tab, setTab]             = useState<'perguntas' | 'usuarios'>('perguntas')
+  const [tab, setTab]             = useState<'perguntas' | 'usuarios' | 'aura'>('perguntas')
   const [msg, setMsg]             = useState('')
+  const [processingAura, setProcessingAura] = useState(false)
+  const [auraResult, setAuraResult] = useState<any>(null)
   const supabaseRef = useRef<any>(null)
 
   useEffect(() => {
@@ -53,7 +56,7 @@ export default function ModerarPage() {
 
     const { data: ps } = await sb
       .from('profiles')
-      .select('id, display_name, role, is_banned')
+      .select('id, display_name, role, is_banned, aura_balance, aura_badge')
       .order('display_name')
     setProfiles(ps ?? [])
   }
@@ -80,6 +83,17 @@ export default function ModerarPage() {
     const { error } = await sb.from('profiles').update({ is_banned: !current }).eq('id', id)
     if (error) { setMsg('Erro: ' + error.message); return }
     setProfiles(prev => prev.map(p => p.id === id ? { ...p, is_banned: !current } : p))
+  }
+
+  async function runWeeklyAura() {
+    if (!confirm('Rodar o processamento semanal de Aura agora? Isso converte votos pendentes em aura e recalcula badges.')) return
+    setProcessingAura(true)
+    const sb = supabaseRef.current
+    const { data, error } = await sb.rpc('process_weekly_aura')
+    setProcessingAura(false)
+    if (error) { setMsg('Erro: ' + error.message); return }
+    setAuraResult(data)
+    setMsg('Processamento semanal de Aura concluído.')
   }
 
   const labelStyle: React.CSSProperties = {
@@ -133,6 +147,12 @@ export default function ModerarPage() {
             background: tab === 'usuarios' ? 'var(--color-gold)' : 'var(--color-surface)',
             color: tab === 'usuarios' ? '#000' : 'var(--color-muted)', border: '1px solid var(--color-border)' }}>
           Usuários ({profiles.length})
+        </button>
+        <button onClick={() => setTab('aura')}
+          style={{ padding: '8px 18px', borderRadius: 8, fontSize: 14, fontFamily: 'var(--font-display)', cursor: 'pointer',
+            background: tab === 'aura' ? 'var(--color-gold)' : 'var(--color-surface)',
+            color: tab === 'aura' ? '#000' : 'var(--color-muted)', border: '1px solid var(--color-border)' }}>
+          Aura
         </button>
       </div>
 
@@ -191,6 +211,62 @@ export default function ModerarPage() {
               </button>
             </div>
           ))}
+        </div>
+      )}
+      {tab === 'aura' && (
+        <div className="flex flex-col gap-4">
+          <div className="p-5 rounded-lg" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
+            <div className="flex items-center gap-2 mb-2">
+              <Sparkles size={16} style={{ color: 'var(--color-gold)' }} />
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 15, fontWeight: 700, color: 'var(--color-text)' }}>
+                Processamento semanal de Aura
+              </h3>
+            </div>
+            <p style={{ color: 'var(--color-muted)', fontSize: 13, marginBottom: 16 }}>
+              Roda automaticamente toda segunda-feira às 00:05 (UTC) via cron. Converte votos pendentes em aura
+              e recalcula os badges (ouro/prata/bronze). Use o botão abaixo só se quiser forçar uma execução fora do horário.
+            </p>
+            <button onClick={runWeeklyAura} disabled={processingAura}
+              style={{ padding: '10px 20px', borderRadius: 8, border: 'none', cursor: processingAura ? 'not-allowed' : 'pointer',
+                background: processingAura ? 'var(--color-surface2)' : 'var(--color-gold)',
+                color: processingAura ? 'var(--color-muted)' : '#000', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 14 }}>
+              {processingAura ? 'Processando...' : 'Rodar agora'}
+            </button>
+
+            {auraResult && (
+              <div className="mt-4 grid grid-cols-2 gap-3">
+                <div className="p-3 rounded-lg" style={{ background: 'var(--color-surface2)' }}>
+                  <p style={{ color: 'var(--color-muted)', fontSize: 11 }}>Votos processados</p>
+                  <p style={{ color: 'var(--color-text)', fontSize: 20, fontFamily: 'var(--font-display)', fontWeight: 700 }}>{auraResult.votes_processed}</p>
+                </div>
+                <div className="p-3 rounded-lg" style={{ background: 'var(--color-surface2)' }}>
+                  <p style={{ color: 'var(--color-muted)', fontSize: 11 }}>Usuários elegíveis (aura &gt; 10)</p>
+                  <p style={{ color: 'var(--color-text)', fontSize: 20, fontFamily: 'var(--font-display)', fontWeight: 700 }}>{auraResult.eligible_count}</p>
+                </div>
+                <div className="p-3 rounded-lg col-span-2" style={{ background: 'var(--color-surface2)' }}>
+                  <p style={{ color: 'var(--color-muted)', fontSize: 11 }}>Badges recalculados</p>
+                  <p style={{ color: auraResult.badges_recalculated ? '#34D399' : 'var(--color-muted)', fontSize: 14, fontFamily: 'var(--font-display)' }}>
+                    {auraResult.badges_recalculated ? 'Sim' : `Não (precisa de 30+ usuários elegíveis, há ${auraResult.eligible_count})`}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <p style={labelStyle}>Ranking de aura</p>
+            {profiles.slice().sort((a: any, b: any) => (b.aura_balance ?? 0) - (a.aura_balance ?? 0)).map((p: any, i: number) => (
+              <div key={p.id} className="flex items-center justify-between p-3 rounded-lg"
+                style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
+                <span style={{ color: 'var(--color-text)', fontSize: 14 }}>
+                  {i + 1}. {p.display_name} {p.aura_badge === 'gold' ? '🥇' : p.aura_badge === 'silver' ? '🥈' : p.aura_badge === 'bronze' ? '🥉' : ''}
+                </span>
+                <span style={{ color: 'var(--color-gold)', fontSize: 14, fontFamily: 'var(--font-display)', fontWeight: 700 }}>
+                  {p.aura_balance ?? 0}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>
