@@ -80,7 +80,12 @@ function LoginForm() {
                 placeholder="seu@email.com" style={inputStyle} />
             </div>
             <div>
-              <label style={labelStyle}>Senha</label>
+              <div className="flex items-center justify-between" style={{ marginBottom: 5 }}>
+                <label style={{ ...labelStyle, marginBottom: 0 }}>Senha</label>
+                <Link href="/reset-password" style={{ color: 'var(--color-muted)', fontSize: 12, fontFamily: 'var(--font-display)' }}>
+                  Esqueceu a senha?
+                </Link>
+              </div>
               <input ref={passwordRef} type="password" required autoComplete="current-password"
                 placeholder="••••••••" style={inputStyle} />
             </div>
