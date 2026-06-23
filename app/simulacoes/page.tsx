@@ -67,9 +67,17 @@ const sims = [
     href:     `${BASE}/QuantumWell/infiniteWell.html`,
     img:      `${WIX}/7b20c6_b6899c6a96b14a16bf7007c41f747992~mv2.png`,
   },
+  {
+    id:       'lissajous',
+    title:    'Figuras de Lissajous',
+    subtitle: 'MHS / Ondulatória',
+    desc:     'Explore a composição de dois movimentos harmônicos perpendiculares. Controle amplitudes, frequências e defasagens — veja a trajetória e os gráficos x(t) e y(t).',
+    href:     '/simulacoes/lissajous.html',
+    icon:     '≈',
+  },
 ]
 
-const topicos = ['Cinemática', 'Cinemática 2D', 'Eletrostática', 'Óptica / Fotônica', 'Ondulatória', 'Termodinâmica', 'Física Moderna']
+const topicos = ['Cinemática', 'Cinemática 2D', 'Eletrostática', 'Óptica / Fotônica', 'Ondulatória', 'Termodinâmica', 'Física Moderna', 'MHS']
 
 export default function SimulacoesPage() {
   return (
@@ -103,10 +111,19 @@ export default function SimulacoesPage() {
           <div key={sim.id} className="group flex flex-col rounded-xl overflow-hidden"
             style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
             {/* Visual header */}
-            <div className="relative overflow-hidden"
-              style={{ height: 160, borderBottom: '1px solid var(--color-border)' }}>
-              <Image src={sim.img} alt={sim.title} fill style={{ objectFit: 'cover' }} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
-            </div>
+            {sim.img ? (
+              <div className="relative overflow-hidden"
+                style={{ height: 160, borderBottom: '1px solid var(--color-border)' }}>
+                <Image src={sim.img} alt={sim.title} fill style={{ objectFit: 'cover' }} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
+              </div>
+            ) : (
+              <div className="flex items-center justify-center"
+                style={{ height: 160, borderBottom: '1px solid var(--color-border)', background: 'var(--color-bg)' }}>
+                <span style={{ fontSize: 48, color: 'var(--color-gold)', fontFamily: 'var(--font-display)', fontWeight: 700, opacity: 0.8 }}>
+                  {sim.icon}
+                </span>
+              </div>
+            )}
             {/* Content */}
             <div className="p-5 flex flex-col flex-1">
               <p style={{ color: 'var(--color-gold)', fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '0.3rem', fontFamily: 'var(--font-display)' }}>
