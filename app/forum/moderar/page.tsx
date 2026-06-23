@@ -26,6 +26,10 @@ export default function ModerarPage() {
   const [msg, setMsg]             = useState('')
   const [processingAura, setProcessingAura] = useState(false)
   const [auraResult, setAuraResult] = useState<any>(null)
+  const [grantingTo, setGrantingTo] = useState<string | null>(null)
+  const [grantAmount, setGrantAmount] = useState('100')
+  const [grantNote, setGrantNote] = useState('')
+  const [granting, setGranting] = useState(false)
   const supabaseRef = useRef<any>(null)
 
   useEffect(() => {
@@ -94,6 +98,20 @@ export default function ModerarPage() {
     if (error) { setMsg('Erro: ' + error.message); return }
     setAuraResult(data)
     setMsg('Processamento semanal de Aura concluído.')
+  }
+
+  async function grantAura(userId: string) {
+    const amount = parseInt(grantAmount, 10)
+    if (!amount) { setMsg('Informe um valor válido.'); return }
+    setGranting(true)
+    const sb = supabaseRef.current
+    const { data, error } = await sb.rpc('admin_grant_aura', { p_user_id: userId, p_amount: amount, p_note: grantNote || null })
+    setGranting(false)
+    if (error || !data?.success) { setMsg(data?.error ?? error?.message ?? 'Erro ao conceder aura.'); return }
+    setProfiles(prev => prev.map(p => p.id === userId ? { ...p, aura_balance: (p.aura_balance ?? 0) + amount } : p))
+    setGrantingTo(null)
+    setGrantNote('')
+    setMsg(`${amount >= 0 ? '+' : ''}${amount} de aura concedida.`)
   }
 
   const labelStyle: React.CSSProperties = {
@@ -192,23 +210,55 @@ export default function ModerarPage() {
       {tab === 'usuarios' && (
         <div className="flex flex-col gap-3">
           {profiles.map(p => (
-            <div key={p.id} className="flex items-center justify-between gap-4 p-4 rounded-lg"
+            <div key={p.id} className="flex flex-col gap-3 p-4 rounded-lg"
               style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-              <div>
-                <p style={{ color: 'var(--color-text)', fontSize: 15, fontWeight: 600 }}>
-                  {p.display_name} {p.is_banned && <span style={{ color: '#ff6b6b', fontSize: 11, fontFamily: 'var(--font-display)' }}>BANIDO</span>}
-                </p>
-                <p style={{ color: 'var(--color-muted)', fontSize: 12 }}>role: {p.role}</p>
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p style={{ color: 'var(--color-text)', fontSize: 15, fontWeight: 600 }}>
+                    {p.display_name}
+                    {' '}{p.aura_badge === 'gold' ? '🥇' : p.aura_badge === 'silver' ? '🥈' : p.aura_badge === 'bronze' ? '🥉' : ''}
+                    {p.is_banned && <span style={{ color: '#ff6b6b', fontSize: 11, fontFamily: 'var(--font-display)', marginLeft: 8 }}>BANIDO</span>}
+                  </p>
+                  <p style={{ color: 'var(--color-muted)', fontSize: 12 }}>
+                    role: {p.role} · <span style={{ color: 'var(--color-gold)' }}>{p.aura_balance ?? 0} de aura</span>
+                  </p>
+                </div>
+                <div className="flex gap-2 flex-shrink-0">
+                  <button onClick={() => setGrantingTo(grantingTo === p.id ? null : p.id)}
+                    style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 6, fontSize: 13,
+                      fontFamily: 'var(--font-display)', cursor: 'pointer',
+                      border: '1px solid rgba(228,173,65,0.3)', background: 'rgba(228,173,65,0.08)', color: 'var(--color-gold)' }}>
+                    <Sparkles size={13} />
+                    Conceder aura
+                  </button>
+                  <button onClick={() => toggleBan(p.id, p.is_banned)}
+                    style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 6, fontSize: 13,
+                      fontFamily: 'var(--font-display)', cursor: 'pointer',
+                      border: p.is_banned ? '1px solid var(--color-border)' : '1px solid rgba(220,50,50,0.3)',
+                      background: p.is_banned ? 'var(--color-surface2)' : 'rgba(220,50,50,0.08)',
+                      color: p.is_banned ? 'var(--color-muted)' : '#ff6b6b' }}>
+                    <Ban size={13} />
+                    {p.is_banned ? 'Desbanir' : 'Banir'}
+                  </button>
+                </div>
               </div>
-              <button onClick={() => toggleBan(p.id, p.is_banned)}
-                style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 6, fontSize: 13,
-                  fontFamily: 'var(--font-display)', cursor: 'pointer',
-                  border: p.is_banned ? '1px solid var(--color-border)' : '1px solid rgba(220,50,50,0.3)',
-                  background: p.is_banned ? 'var(--color-surface2)' : 'rgba(220,50,50,0.08)',
-                  color: p.is_banned ? 'var(--color-muted)' : '#ff6b6b' }}>
-                <Ban size={13} />
-                {p.is_banned ? 'Desbanir' : 'Banir'}
-              </button>
+              {grantingTo === p.id && (
+                <div className="flex items-center gap-2 p-3 rounded-lg" style={{ background: 'var(--color-surface2)' }}>
+                  <input type="number" value={grantAmount} onChange={e => setGrantAmount(e.target.value)}
+                    placeholder="Valor (use negativo para remover)"
+                    style={{ width: 90, background: 'var(--color-surface)', border: '1px solid var(--color-border)',
+                      borderRadius: 6, padding: '6px 10px', color: 'var(--color-text)', fontSize: 13 }} />
+                  <input type="text" value={grantNote} onChange={e => setGrantNote(e.target.value)}
+                    placeholder="Motivo (ex: medalhista IPhO 2025)"
+                    style={{ flex: 1, background: 'var(--color-surface)', border: '1px solid var(--color-border)',
+                      borderRadius: 6, padding: '6px 10px', color: 'var(--color-text)', fontSize: 13 }} />
+                  <button onClick={() => grantAura(p.id)} disabled={granting}
+                    style={{ padding: '7px 16px', borderRadius: 6, border: 'none', background: 'var(--color-gold)',
+                      color: '#000', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 13, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                    {granting ? 'Enviando...' : 'Confirmar'}
+                  </button>
+                </div>
+              )}
             </div>
           ))}
         </div>
