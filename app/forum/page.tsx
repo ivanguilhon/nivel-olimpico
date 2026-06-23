@@ -152,10 +152,8 @@ export default async function ForumPage({
                             <CheckCircle size={16} style={{ color: '#34D399', flexShrink: 0, marginTop: 3 }} />
                           )}
                           <Link href={`/forum/${q.id}`} style={{ textDecoration: 'none' }}>
-                            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 17, fontWeight: 600,
-                              color: 'var(--color-text)', lineHeight: 1.3 }}
-                              onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-gold)')}
-                              onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-text)')}>
+                            <h2 className="transition-colors duration-150 text-[var(--color-text)] hover:text-[var(--color-gold)]"
+                              style={{ fontFamily: 'var(--font-display)', fontSize: 17, fontWeight: 600, lineHeight: 1.3 }}>
                               {q.title}
                             </h2>
                           </Link>

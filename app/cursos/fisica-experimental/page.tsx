@@ -142,7 +142,7 @@ export default function FisicaExperimentalPage() {
       {/* ── DEPOIMENTOS ── */}
       <section style={{ background: 'var(--color-surface)', borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
         <div className="max-w-4xl mx-auto px-4 py-16">
-          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 700, color: 'var(--color-text)', textAlign: 'center', marginBottom: 40 }}>O que dizem os alunos</h2>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 700, color: 'var(--color-text)', textAlign: 'center', marginBottom: 40 }}>O que esperar do curso?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map(t => <Testimonial key={t.name} {...t} />)}
           </div>
